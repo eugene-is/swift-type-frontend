@@ -4,3 +4,4 @@ export * from "./TypewriterText";
 export * from "./FormInput";
 export * from "./KeyButton";
 export * from "./Keyboard";
+export * from "./TrainerInput";

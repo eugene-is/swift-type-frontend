@@ -7,7 +7,7 @@ export const FormInput = ({ className, type, name, placeholder, labelText }) => 
     <div className={ styles.block }>
       <h2 className={`${styles.text} ${styles.themeText}`}>{labelText}</h2>
       <input
-        className={`${styles.input} ${styles.themeInput} ${className}`}
+        className={`${styles.inputForm} ${styles.themeInput} ${className}`}
         type={type}
         name={name}
         placeholder={placeholder}

@@ -5,7 +5,6 @@ import { CiGlobe } from 'react-icons/ci';
 import { RiBrush2Fill } from 'react-icons/ri';
 
 export const KeyButton = ({ id, letters, sup = '', spec = '', icon = ''}) => {
-  console.log(spec)
   let keyButtonClass = `${styles.keyButton}`;
   switch (spec) {
     case 'space':
@@ -45,14 +44,14 @@ export const KeyButton = ({ id, letters, sup = '', spec = '', icon = ''}) => {
         {letters} <sup>{spec}</sup>
       </div>
     );
-  } else if (icon == 'globus'){
+  } else if (icon === 'globus'){
     keyButtonClass += ` ${ styles.icon } `;
     return (
       <div className={keyButtonClass} id={id} data-spec={letters}>
         <CiGlobe className={ styles.icon }/>
       </div>
     );
-  } else if (icon == 'fill'){
+  } else if (icon === 'fill'){
     keyButtonClass += ` ${ styles.icon }`;
     return (
       <div className={keyButtonClass} id={id} data-spec={letters}>
