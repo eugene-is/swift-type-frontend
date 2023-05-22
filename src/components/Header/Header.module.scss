@@ -1,0 +1,29 @@
+@import '../../scss/index.scss';
+.header {
+	padding-top: 10px;
+	&__content {
+		padding: 0 20px 0 20px;
+		.nav{
+			display: flex;
+			justify-content: space-between;
+			.nav__logo{
+				.link{
+					display: flex;
+					font-size: 38px;
+					align-items: center;
+					.logo{
+						margin-right: 10px;
+						width: 70px;
+						height: 70px;
+					}
+				}
+			}
+			.nav__list{
+				display: flex;
+				font-size: 20px;
+				align-items: center;
+				column-gap: 20px;
+			}
+		}
+	}
+}

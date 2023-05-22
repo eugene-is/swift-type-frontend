@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Header } from "./components";
+import { Home, Trainer, Registration, Login } from "./pages";
+import { useTheme } from './hooks/use-theme.jsx';
+import { BiMoon, BiSun } from 'react-icons/bi';
+
 
 function App() {
+  const { theme, setTheme } = useTheme();
+
+  const handleThemeToggle = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  const ThemeIcon = theme === 'light' ? BiMoon : BiSun;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='themeContainer wrapper'>
+      <Header />
+      <div className='themeIcon' onClick={handleThemeToggle}>
+        <ThemeIcon className='themeLogo' size='2em'/>
+      </div>
+      <Routes>
+        <Route path='/' element={<Home /> }></Route>
+        <Route path='/login' element={<Login /> }></Route>
+        <Route path='/register' element={<Registration /> }></Route>
+        <Route path='/trainer' element={<Trainer /> }></Route>
+        {/* <Route path='/rating' element={<Rating /> }></Route> */}
+      </Routes>
     </div>
   );
 }
