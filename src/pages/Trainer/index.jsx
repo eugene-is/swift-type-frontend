@@ -16,6 +16,7 @@ export const Trainer = () => {
     inputRef,
     startTime,
     endTime,
+    toggleLanguage,
     handleInputChange,
     handleFinishClick,
     handleCheckboxChange,
@@ -36,6 +37,7 @@ export const Trainer = () => {
           inputText={inputText}
           inputRef={inputRef}
           pressedKey={pressedKey}
+          toggleLanguage={toggleLanguage}
           handleInputChange={handleInputChange}
           handleFinishClick={handleFinishClick}
           handleCheckboxChange={handleCheckboxChange}

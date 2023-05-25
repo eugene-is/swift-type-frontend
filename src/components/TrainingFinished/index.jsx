@@ -7,8 +7,8 @@ import { BiTime, BiErrorCircle } from 'react-icons/bi'
 export const TrainingFinished = ({ accuracy, speed, trainingTime, resetTraining, pressedKey }) => {
   return (
     <>
-    <h2 className={ styles.tittle }><TypewriterText text={ 'Тренировка завершена' }/></h2>
-    <h2 class="results__title">Результат:</h2>
+    <h2 className={ styles.title }><TypewriterText text={ 'Тренировка завершена' }/></h2>
+    <h2 className={ styles.result__title }>Результат:</h2>
       <div className={ styles.indicators }>
 						<div className={ styles.indicator }>
               <MdSpeed className={`${ styles.logo } ${ styles.themeLogo }`}/>
