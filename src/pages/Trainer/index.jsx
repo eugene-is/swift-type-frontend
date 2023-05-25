@@ -1,21 +1,10 @@
-// import React from 'react'
+import React from 'react'
 
-// import { TrainerInput } from '../../components';
-// //import styles from './Trainer.module.scss';
+import { TrainingFinished, TrainingInProgress, TypewriterText } from '../../components'
+import { useTrainerInput } from '../../hooks/use-trainer-input'
 
-// export const Trainer = () => {
-//   return (
-// 		<>
-// 			<TrainerInput/>
-// 		</>
-//   );
-// };
+import styles from './Trainer.module.scss'
 
-
-import React from 'react';
-
-import { useTrainerInput } from '../../hooks/use-trainer-input';
-import { TrainingInProgress, TrainingFinished } from '../../components';
 
 export const Trainer = () => {
   const {
@@ -37,8 +26,8 @@ export const Trainer = () => {
   } = useTrainerInput();
 
   return (
-    <div>
-      <h1>Тренировка слепой печати</h1>
+    <div className={`${ styles.container } ${ styles.themeText }`}>
+      <h1 className={ styles.title }><TypewriterText text={ 'Blind Printing Training' }/></h1>
       {!endTime ? (
         <TrainingInProgress
           strictMode={strictMode}

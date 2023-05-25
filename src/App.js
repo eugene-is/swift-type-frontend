@@ -5,7 +5,7 @@ import { useTheme } from './hooks/use-theme.jsx';
 import { BiMoon, BiSun } from 'react-icons/bi';
 
 
-function App() {
+export default function App() {
   const { theme, setTheme } = useTheme();
 
   const handleThemeToggle = () => {
@@ -34,5 +34,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

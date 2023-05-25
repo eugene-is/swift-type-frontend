@@ -18,13 +18,14 @@ export const Keyboard = ({ pressedKey }) => {
   };
 
   return (
-    <div className={styles.keyboard}>
+    <div>
       {keys.map((row, rowIndex) => (
-        <div key={rowIndex} className={styles.btn}>
+        <div key={rowIndex} className={styles.keyboard}>
           {row.map((key) => (
             <div
               key={key}
               className={`${styles.key}
+
                 ${pressedKey === key[0].toLowerCase() ? styles.active : ''} 
 
                 ${!isSpecialSymbol(key[0]) ? (pressedKey === key[1].toLowerCase() ? styles.active : '') : ''}

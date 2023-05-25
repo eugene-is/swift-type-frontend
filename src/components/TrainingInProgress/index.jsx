@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './TrainerInput.module.scss';
 import { Keyboard } from '../Keyboard';
+import { BsQuestionCircle } from 'react-icons/bs';
+
 export const TrainingInProgress = ({
   strictMode,
   randomText,
@@ -14,23 +16,16 @@ export const TrainingInProgress = ({
   handleEnterPress,
 }) => {
   return (
-    <div>
-      <label>
-        <input type="checkbox" checked={strictMode} onChange={handleCheckboxChange} />
-        Строгий режим
+    <div className={ styles.label }>
+      <label className={ styles.icon }>
+        <input  type="checkbox" checked={strictMode} onChange={ handleCheckboxChange } />
+        Строгий режим<BsQuestionCircle className={ styles.icon }/>
       </label>
-      <p>Текст для печати:</p>
-      <p>
-        {randomText.split('').map((char, index) => (
-          <span key={index} className={index === currentIndex ? 'current' : ''}>
-            {char}
-          </span>
-        ))}
-      </p>
+      
 
-      <div className={`${styles.container} ${styles.inputForm}`}>
+      <div className={`${styles.container} ${styles.inputForm} ${styles.borderBottomColor}`}>
         <form action="">
-          <input
+          <input className={ styles.inputText }
             ref={inputRef}
             type="text"
             value={inputText}
@@ -40,7 +35,21 @@ export const TrainingInProgress = ({
         </form>
       </div>
 
-      <p>Для завершения тренировки нажмите ESC или нажмите кнопку:</p>
+      <h3>Текст для печати:</h3>
+      <div className={ styles.text}>
+      {randomText.split('').map((char, index) => (
+        <span
+          key={index} 
+          className={`${index === currentIndex ? 'current' : ''}
+          ${strictMode && index < currentIndex ? styles.correctChar : ''}
+          ${strictMode && index === currentIndex && char !== inputText[currentIndex] ? styles.incorrectChar : ''}`}
+        >
+          {char}
+        </span>
+      ))}
+      </div>
+
+      <div>Для завершения тренировки нажмите Enter или нажмите кнопку:</div>
       <button onClick={handleFinishClick}>Завершить тренировку</button>
       <Keyboard pressedKey={pressedKey} />
     </div>

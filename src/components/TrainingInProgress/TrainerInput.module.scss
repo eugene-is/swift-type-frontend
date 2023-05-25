@@ -1,5 +1,7 @@
 @import '../../scss/index.scss';
-
+.correctChar {
+  color: gray;
+}
 .inputForm{
 	width: 100%;
 	padding: 10px 0;
@@ -10,6 +12,9 @@
 	font-family: "PT Mono", monospace;
 	font-size: 18px;
 	transition: all 0.1s ease-in;
+}
+.inputText {
+  width: 100vh;
 }
 .btn {
   display: flex;
@@ -65,4 +70,39 @@
 }
 .g {
   border-color: black;
+}
+.text{
+  font-size: 18px;
+	margin-bottom: 35px;
+}
+// .icon {
+//   margin-left: 5px;
+//   align-items: center;
+// }
+// .label {
+//   position: relative;
+// }
+
+.icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.icon:hover::before {
+  content: "Стандартный режим: В этом режиме Вы можете вводить текст без исправлений сосредатачиваясь на скорости печати. Строгий режим: В этом режиме Вы должны вводить точное соответствие каждого символа в тексте. Если Вы вводите символ неверно, ввод игнорируется.";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px; /* Ширина окна */
+  padding: 10px; /* Отступы внутри окна */
+  background-color: var(--background-color); /* Цвет фона окна */
+  border: 1px solid #ccc; /* Граница окна */
+  border-radius: 4px; /* Закругление углов окна */
+  font-size: 14px; /* Размер шрифта текста окна */
+  line-height: 1.4; /* Межстрочный интервал текста окна */
+  z-index: 1; /* Положение окна над остальным содержимым */
+}
+
+.incorrectChar {
+  color: red;
 }

@@ -1,0 +1,63 @@
+@import '../../scss/index.scss';
+
+.tittle {
+	text-align: center;
+	margin-top: 20px;
+	font-family: "PT Mono", monospace;
+	font-weight: 600;
+	font-size: 32px;
+}
+
+.indicators {
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-around;
+	border-radius: 8px;
+	border: 1px solid #d9d9d9;
+}
+
+.indicator {
+	display: flex;
+	font-size: 12px;
+	font-family: "PT Mono", monospace;
+	padding: 10px;
+	align-items: center;
+	padding-right: 30px;
+	&__name {
+		margin-left: 10px;
+	}
+}
+
+.indicator:not(:last-child){
+	border-right: 1px solid #d9d9d9;
+}
+
+.logo {
+	font-size: 2em;
+	margin-right: 15px;
+}
+
+
+.btn {
+	margin: 30px auto;
+	position: relative;
+	display: block;
+	padding: 14px 15px;
+	color: #000;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 8px;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	transition: all 1s ease;
+	border: 2px solid #C7D0D4;
+}
+.btn:hover {
+  background-color: rgba(182, 178, 178, 0.5);
+  color: #fff;
+	transition: 500ms;
+}

@@ -35,9 +35,10 @@ export const useTrainerInput = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
-      finishTraining();
-    } else if (event.key === randomText[currentIndex]) {
+    // if (event.key === 'Escape') {
+    //   finishTraining();
+    // } else 
+    if (event.key === randomText[currentIndex]) {
       handleCorrectChar();
     } else if (strictMode) {
       event.preventDefault();
@@ -108,12 +109,14 @@ export const useTrainerInput = () => {
     }
     let errorCount = 0;
     for (let i = 0; i < inputText.length; i++) {
-      if (inputText[i] !== randomText[i] && (strictMode || inputText[i] !== ' ')) {
+      console.log(`${inputText[i]} ---- ${randomText[i]}---- ${inputText.length}`);
+      if (inputText[i] !== randomText[i]) {
         errorCount++;
       }
     }
-
-    const accuracy = ((inputText.length - errorCount) / inputText.length) * 100;
+    //errorCount = errorCount/6-2
+    const accuracy = ((inputText.length - Math.floor(errorCount/(6-2))) / inputText.length) * 100
+    //return `${inputText.length}----${errorCount/6-2}---- ${((inputText.length - Math.floor(errorCount/(6-1))) / inputText.length) * 100}`
     return accuracy.toFixed(2);
   };
 
@@ -131,6 +134,7 @@ export const useTrainerInput = () => {
   };
 
   const handleCheckboxChange = () => {
+    resetTraining()
     setStrictMode(!strictMode);
   };
 
