@@ -1,5 +1,97 @@
 @import '../../scss/index.scss';
-.line {
-	display: flex;
-	justify-content: center;
+.btn {
+  display: flex;
+  justify-content: center;
+}
+.text {
+	font-size: 18px;
+	margin-bottom: 35px;
+}
+/* TrainerInput.module.scss */
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard {
+  grid-template-columns: repeat(14, 1fr);
+  grid-gap: 5px;
+}
+
+.key {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // width: 50px;
+  // height: 50px;
+  // border: 1px solid #ccc;
+  // border-radius: 5px;
+  // background-color: #fff;
+  width: 49px;
+  height: 49px;
+  line-height: 42px;
+  font-size: 15px;
+  border: 1px solid #c7d0d4;
+  background: #fff;
+  margin: 1px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+.uppercase {
+  font-size: 14px;
+}
+.spec {
+  width: 100px;
+}
+
+
+.key.active {
+  background-color: #c7d0d4;
+}
+
+
+
+
+
+.specialLetters{
+  color: #95a0a4;
+  font-size: 10px;
+}
+.backspace{
+  width: 75px;
+  text-align: right;
+}
+.tab {
+  width: 75px;
+  text-align: left;
+}
+.capslock {
+  width: 87px;
+  text-align: left;
+}
+.enter {
+  width: 88px;
+  text-align: right;
+}
+.shift, .leftShift {
+  width: 113px;
+  text-align: left;
+  color: #95a0a4;
+  font-size: 10px;
+}
+.leftShift {
+  text-align: right;
+}
+.globus{
+  margin-left: auto;
+}
+.space {
+  width: 312px;
+  text-align: right;
+}
+.alt {
+  width: 88px;
+  text-align: right;
 }
