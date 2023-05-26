@@ -4,8 +4,25 @@ import { Link } from 'react-router-dom';
 
 import styles from './Btn.module.scss';
 
-export const Btn = ({ text, className, link = '', type = '' }) => {
-  if (link) {
+/**
+ * Компонент кпонки.
+ *
+ * @param {string} text - текстовое содержимое кнопки.
+ * @param {string} className - Дополнительные классы для кнопки.
+ * @param {string} link - URL-адрес ссылки (необязательно).
+ * @param {string} type - тип кнопки (необязательно).
+ * @param {function} onclick - Обработчик события click (необязательно).
+ * @returns {JSX.Element} - отображаемый компонент кнопки.
+*/
+
+export const Btn = ({ text, className, link = '', type = '' , onclick = ''}) => {
+  if (onclick){
+    return (
+      <button onClick={onclick} className={`${styles.btn} ${className}`}>
+        <span className={styles.themeText}>{text}</span>
+      </button>
+    );
+  } else if (link) {
     return (
       <Link to={link} className={`${styles.btn} ${className}`}>
         <span className={styles.themeText}>{text}</span>
@@ -21,6 +38,7 @@ export const Btn = ({ text, className, link = '', type = '' }) => {
 };
 
 Btn.propTypes = {
+  onclick: PropTypes.func,
   text: PropTypes.string.isRequired,
   className: PropTypes.string,
   link: PropTypes.string,

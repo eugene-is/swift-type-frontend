@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { Header } from "./components";
-import { Home, Trainer, Registration, Login } from "./pages";
-import { useTheme } from './hooks/use-theme.jsx';
 import { BiMoon, BiSun } from 'react-icons/bi';
 
+import { Header } from "./components";
+import { Home, Trainer, Rating, Registration, Login } from "./pages";
+import { useTheme } from './hooks/use-theme.jsx';
 
 export default function App() {
   const { theme, setTheme } = useTheme();
@@ -29,7 +29,7 @@ export default function App() {
         <Route path='/login' element={<Login /> }></Route>
         <Route path='/register' element={<Registration /> }></Route>
         <Route path='/trainer' element={<Trainer /> }></Route>
-        {/* <Route path='/rating' element={<Rating /> }></Route> */}
+        <Route path='/rating' element={<Rating /> }></Route>
       </Routes>
     </div>
   );

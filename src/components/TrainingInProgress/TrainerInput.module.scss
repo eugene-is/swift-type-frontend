@@ -1,4 +1,5 @@
 @import '../../scss/index.scss';
+
 .correctChar {
   color: gray;
 }
@@ -13,6 +14,14 @@
 	font-size: 18px;
 	transition: all 0.1s ease-in;
 }
+
+.settings {
+  align-items: center;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
 .inputText {
   width: 100vh;
 }
@@ -62,9 +71,7 @@ h3 {
 .key.active {
   background-color: #f2f2f2;
 }
-.g {
-  border-color: black;
-}
+
 .text{
   font-size: 18px;
 	margin-bottom: 35px;
@@ -73,7 +80,14 @@ h3 {
   position: relative;
   cursor: pointer;
 }
-
+label {
+  input {
+    margin-right: 5px;
+  }
+  svg {
+    margin-left: 5px;
+  }
+}
 .icon:hover::before {
   content: "Стандартный режим: В этом режиме Вы можете вводить текст без исправлений сосредотачиваясь на скорости печати. Текст не подсвечивается и не контролируется печать. Строгий режим: В этом режиме Вы должны вводить точное соответствие каждого символа в тексте. Если Вы вводите символ неверно, ввод игнорируется. Текст подсвечивается.";
   position: absolute;

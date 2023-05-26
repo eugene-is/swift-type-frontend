@@ -1,229 +1,36 @@
-// import { useEffect, useRef, useState } from 'react';
-
-// export const useTrainerInput = () => {
-//   const [inputText, setInputText] = useState('');
-//   const [randomText, setRandomText] = useState('');
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const [startTime, setStartTime] = useState(null);
-//   const [endTime, setEndTime] = useState(null);
-//   const [strictMode, setStrictMode] = useState(false);
-//   const [pressedKey, setPressedKey] = useState(null);
-//   const [errorCount, setErrorCount] = useState(0);
-//   const [errorCountStrictMode, setErrorCountStrictMode] = useState(0);
-//   const inputRef = useRef(null);
-
-//   useEffect(() => {
-//     generateRandomText();
-//     inputRef.current.focus();
-//     document.addEventListener('keydown', handleKeyDown);
-//     document.addEventListener('keyup', handleKeyUp);
-//     return () => {
-//       document.removeEventListener('keydown', handleKeyDown);
-//       document.removeEventListener('keyup', handleKeyUp);
-//     };
-//     // eslint-disable-next-line
-//   }, []);
-
-//   useEffect(() => {
-//     if (!endTime) {
-//       inputRef.current.focus();
-//     }
-//   }, [endTime]);
-
-//   const generateRandomText = () => {
-//     // const russianTexts = [
-//     //   'Пример случайного текста на русском языке.',
-//     //   'Еще одно предложение для тренировки печати.',
-//     //   'Третье предложение для проверки навыков.',
-//     // ];
-
-//     const texts = [
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//       'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-//       'Nunc luctus nisi vitae nisl dictum ornare.',
-//       'Nulla ac diam feugiat, sollicitudin urna ut, aliquam lectus.',
-//       'Sed auctor lacus sed finibus vestibulum.',
-//       'Vestibulum aliquam mauris ac metus sollicitudin, vitae aliquam mauris auctor.',
-//       'In id urna vitae nulla efficitur tempus.',
-//       'Mauris euismod turpis id sem scelerisque congue.',
-//       'Vivamus in nulla non purus sagittis venenatis id in ex.',
-//       'Aliquam consequat nunc nec bibendum vulputate.',
-//     ];
-
-//     const numberOfSentences = 5; // Указывает количество случайных предложений, которые нужно выбрать
-//     const randomSentences = [];
-
-//     for (let i = 0; i < numberOfSentences; i++) {
-//       const randomIndex = Math.floor(Math.random() * texts.length);
-//       randomSentences.push(texts[randomIndex]);
-//     }
-
-//     const randomText = randomSentences.join(' '); // Объединяем предложения в одну строку, разделяя их пробелами
-//     setRandomText(randomText);
-//   };
-
-//   const handleKeyDown = (event) => {
-//     if (event.key === randomText[currentIndex]) {
-//       handleCorrectChar();
-//     } else if (strictMode) {
-//       event.preventDefault();
-//       setErrorCount((prevCount) => prevCount + 1);
-//       if (inputText.length > currentIndex) {
-//         setInputText(inputText.slice(0, currentIndex));
-//       }
-//     }
-//     setPressedKey(event.key);
-//   };
-
-//   const handleKeyUp = () => {
-//     setPressedKey(null);
-//   };
-
-//   const handleInputChange = (event) => {
-//     const { value } = event.target;
-
-//     if (strictMode) {
-//       const enteredText = value.slice(inputText.length);
-//       if (enteredText === randomText[currentIndex]) {
-//         setInputText(value);
-//         setCurrentIndex((prevIndex) => prevIndex + 1);
-//         if (value.length === randomText.length) {
-//           finishTraining();
-//         }
-//       } else {
-//         setErrorCountStrictMode((prevCount) => prevCount + 1);
-//       }
-//     } else {
-//       setInputText(value);
-//       setCurrentIndex(value.length);
-//       if (value.length === randomText.length) {
-//         finishTraining();
-//       }
-//     }
-
-//     if (value.length === 1 && !startTime) {
-//       setStartTime(Date.now());
-//     }
-//   };
-
-//   const handleCorrectChar = () => {
-//     setCurrentIndex((prevIndex) => prevIndex + 1);
-//     if (currentIndex === randomText.length - 1) {
-//       finishTraining();
-//     }
-//   };
-
-//   const finishTraining = () => {
-//     if (startTime) {
-//       setErrorCount((prevCount) => prevCount + (randomText.length - inputText.length));
-//       setEndTime(Date.now());
-//     }
-//   };
-
-//   const resetTraining = () => {
-//     setInputText('');
-//     setCurrentIndex(0);
-//     setStartTime(null);
-//     setEndTime(null);
-//     setErrorCount(0);
-//     setErrorCountStrictMode(0);
-//     generateRandomText();
-//     setTimeout(() => inputRef.current.focus(), 0);
-//   };
-
-//   const calculateAccuracy = () => {
-//     if (strictMode) {
-//       const accuracy = 100 - (errorCountStrictMode / (inputText.length + errorCountStrictMode) * 100);
-//       return accuracy.toFixed(2);
-//     }
-//     let errorCount = 0;
-//     for (let i = 0; i < inputText.length; i++) {
-//       if (inputText[i] !== randomText[i]) {
-//         errorCount++;
-//       }
-//     }
-//     const accuracy = ((inputText.length - Math.floor(errorCount / (6 - 2))) / inputText.length) * 100;
-//     return accuracy.toFixed(2);
-//   };
-
-//   const calculateSpeed = () => {
-//     if (endTime && startTime) {
-//       const timeInSeconds = (endTime - startTime) / 1000;
-//       const charactersTyped = inputText.length;
-//       return Math.floor((charactersTyped / timeInSeconds) * 60);
-//     }
-//     return 0;
-//   };
-
-//   const handleFinishClick = () => {
-//     finishTraining();
-//   };
-
-//   const handleCheckboxChange = () => {
-//     resetTraining();
-//     setStrictMode(!strictMode);
-//   };
-
-//   const handleEnterPress = (event) => {
-//     if (event.key === 'Enter') {
-//       event.preventDefault();
-//       finishTraining();
-//     }
-//   };
-
-//   return {
-//     inputText,
-//     randomText,
-//     currentIndex,
-//     strictMode,
-//     pressedKey,
-//     errorCount,
-//     errorCountStrictMode,
-//     inputRef,
-//     startTime,
-//     endTime,
-//     handleKeyDown,
-//     handleKeyUp,
-//     handleInputChange,
-//     handleFinishClick,
-//     handleCheckboxChange,
-//     handleEnterPress,
-//     finishTraining,
-//     resetTraining,
-//     calculateAccuracy,
-//     calculateSpeed,
-//   };
-// };
-
-
-
 import { useEffect, useRef, useState } from 'react';
 
-export const useTrainerInput = () => {
-  const [inputText, setInputText] = useState('');
-  const [randomText, setRandomText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
-  const [strictMode, setStrictMode] = useState(false);
-  const [pressedKey, setPressedKey] = useState(null);
-  const [errorCount, setErrorCount] = useState(0);
-  const [errorCountStrictMode, setErrorCountStrictMode] = useState(0);
-  const inputRef = useRef(null);
-  const [language, setLanguage] = useState('russian'); // Значение по умолчанию - русский язык
+/**
+ * Хук для управления тренировкой ввода текста.
+ * 
+ * @returns {object} - Возвращает объект с различными функциями и значениями для управления тренировкой.
+ */
 
+export const useTrainerInput = () => {
+  const [inputText, setInputText] = useState(''); // Текущий введенный текст
+  const [randomText, setRandomText] = useState(''); // Случайно сгенерированный текст
+  const [currentIndex, setCurrentIndex] = useState(0); // Текущий индекс символа в тексте
+  const [startTime, setStartTime] = useState(null); // Время начала тренировки
+  const [endTime, setEndTime] = useState(null); // Время окончания тренировки
+  const [strictMode, setStrictMode] = useState(false); // Режим строгой проверки ошибок
+  const [pressedKey, setPressedKey] = useState(null); // Нажатая клавиша
+  const [errorCount, setErrorCount] = useState(0); // Количество ошибок
+  const [errorCountStrictMode, setErrorCountStrictMode] = useState(0); // Количество ошибок в строгом режиме
+  const inputRef = useRef(null); // Ссылка на поле ввода
+  const [language, setLanguage] = useState('russian'); // Язык текста
+  const [highlightMode, setHighlightMode] = useState(false); // Режим подсветки
 
   useEffect(() => {
     generateRandomText();
     inputRef.current.focus();
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', handleKeyUp);
+    document.addEventListener('keydown', handleKeyDown); // Обработчик нажатия клавиши
+    document.addEventListener('keyup', handleKeyUp); // Обработчик отпускания клавиши
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
+      document.removeEventListener('keydown', handleKeyDown); // Удаление обработчика нажатия клавиши
+      document.removeEventListener('keyup', handleKeyUp); // Удаление обработчика отпускания клавиши
     };
     // eslint-disable-next-line
-  }, []);
+  }, []); // Пустой массив зависимостей означает, что этот эффект должен выполниться только один раз при монтировании компонента
 
   useEffect(() => {
     if (!endTime) {
@@ -231,14 +38,20 @@ export const useTrainerInput = () => {
     }
   }, [endTime]);
 
+  /**
+   * Переключение языка текста.
+   */
+
   const toggleLanguage = () => {
-    console.log('switch');
     setLanguage((prevLanguage) => (prevLanguage === 'russian' ? 'english' : 'russian'));
     resetTraining();
     generateRandomText();
   };
   
-  
+  /**
+   * Генерация случайного текста на основе выбранного языка.
+   */
+
   const generateRandomText = () => {
     const russianTexts = [
       'Пример случайного текста на русском языке.',
@@ -253,9 +66,8 @@ export const useTrainerInput = () => {
     ];
   
     const texts = language === 'russian' ? russianTexts : englishTexts;
-    console.log(language);
 
-    const numberOfSentences = 5; // Указывает количество случайных предложений, которые нужно выбрать
+    const numberOfSentences = 5;
     const randomSentences = [];
 
     for (let i = 0; i < numberOfSentences; i++) {
@@ -263,9 +75,15 @@ export const useTrainerInput = () => {
       randomSentences.push(texts[randomIndex]);
     }
 
-    const randomText = randomSentences.join(' '); // Объединяем предложения в одну строку, разделяя их пробелами
+    const randomText = randomSentences.join(' ');
     setRandomText(randomText);
   };
+
+  /**
+   * Обработчик нажатия клавиши.
+   * 
+   * @param {object} event - Событие нажатия клавиши.
+   */
 
   const handleKeyDown = (event) => {
     if (event.key === randomText[currentIndex]) {
@@ -280,9 +98,19 @@ export const useTrainerInput = () => {
     setPressedKey(event.key);
   };
 
+  /**
+   * Обработчик отпускания клавиши.
+   */
+
   const handleKeyUp = () => {
     setPressedKey(null);
   };
+
+  /**
+   * Обработчик изменения ввода текста.
+   * 
+   * @param {object} event - Событие изменения текста в поле ввода.
+   */
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -311,6 +139,10 @@ export const useTrainerInput = () => {
     }
   };
 
+  /**
+   * Обработчик правильного символа.
+   */
+
   const handleCorrectChar = () => {
     setCurrentIndex((prevIndex) => prevIndex + 1);
     if (currentIndex === randomText.length - 1) {
@@ -318,12 +150,20 @@ export const useTrainerInput = () => {
     }
   };
 
+  /**
+   * Завершение тренировки.
+   */
+
   const finishTraining = () => {
     if (startTime) {
       setErrorCount((prevCount) => prevCount + (randomText.length - inputText.length));
       setEndTime(Date.now());
     }
   };
+
+  /**
+   * Сброс тренировки.
+   */
 
   const resetTraining = () => {
     setInputText('');
@@ -335,6 +175,12 @@ export const useTrainerInput = () => {
     generateRandomText();
     setTimeout(() => inputRef.current.focus(), 0);
   };
+
+  /**
+   * Расчет точности ввода.
+   * 
+   * @returns {string} - Точность ввода в процентах.
+   */
 
   const calculateAccuracy = () => {
     if (strictMode) {
@@ -351,6 +197,12 @@ export const useTrainerInput = () => {
     return accuracy.toFixed(2);
   };
 
+  /**
+   * Расчет скорости набора текста.
+   * 
+   * @returns {number} - Скорость набора текста в символах в минуту.
+   */
+
   const calculateSpeed = () => {
     if (endTime && startTime) {
       const timeInSeconds = (endTime - startTime) / 1000;
@@ -360,14 +212,36 @@ export const useTrainerInput = () => {
     return 0;
   };
 
+  /**
+   * Обработчик нажатия кнопки "Завершить".
+   */
+
   const handleFinishClick = () => {
     finishTraining();
   };
+
+  /**
+   * Обработчик изменения значения чекбокса "Строгий режим".
+   */
 
   const handleCheckboxChange = () => {
     resetTraining();
     setStrictMode(!strictMode);
   };
+
+  /**
+   * Обработчик изменения значения чекбокса "Режим подсветки".
+   */
+
+  const handleHighlightModeChange = () => {
+    setHighlightMode(!highlightMode);
+  }
+
+  /**
+   * Обработчик нажатия клавиши Enter.
+   * 
+   * @param {object} event - Событие нажатия клавиши.
+   */
 
   const handleEnterPress = (event) => {
     if (event.key === 'Enter') {
@@ -380,6 +254,7 @@ export const useTrainerInput = () => {
     toggleLanguage,
     inputText,
     randomText,
+    highlightMode,
     currentIndex,
     strictMode,
     pressedKey,
@@ -393,6 +268,7 @@ export const useTrainerInput = () => {
     handleInputChange,
     handleFinishClick,
     handleCheckboxChange,
+    handleHighlightModeChange,
     handleEnterPress,
     finishTraining,
     resetTraining,

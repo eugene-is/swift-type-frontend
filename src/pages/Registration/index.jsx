@@ -3,6 +3,12 @@ import React from 'react'
 import { Btn, TypewriterText, FormInput } from '../../components';
 import styles from './Registration.module.scss';
 
+/**
+ * Страница регистрации
+ *
+ * @returns {JSX.Element} - отображаемая страница регистрации.
+*/
+
 export const Registration = () => {
   return (
 		<div className={`${ styles.form} ${ styles.themeContainer }`}>

@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Хук для печатания текста, эмулируя машинопись.
+ *
+ * @param {string} className - Текст для печати
+ * @param {string} type - Скорость печати
+ * @returns {string} - Возвращает отображаемый текст с курсором.
+*/
+
 export const useTypewriter = (text, speed = 70) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);

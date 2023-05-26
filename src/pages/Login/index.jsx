@@ -3,6 +3,11 @@ import React from 'react';
 import styles from './Login.module.scss';
 import { Btn, TypewriterText, FormInput } from '../../components';
 
+/**
+ * Страница авторизации
+ *
+ * @returns {JSX.Element} - отобржаемая страница авторизации
+*/
 
 export const Login = () => {
   return (
