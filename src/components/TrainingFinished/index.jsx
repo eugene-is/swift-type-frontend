@@ -3,7 +3,7 @@ import { MdSpeed } from 'react-icons/md';
 import { BiTime, BiErrorCircle } from 'react-icons/bi';
 import { VscSymbolKey } from 'react-icons/vsc';
 
-import { TypewriterText, Btn } from '../';
+import { TypewriterText, Btn, Statistics } from '../';
 import styles from './TrainingFinished.module.scss';
 
 /**
@@ -14,7 +14,6 @@ import styles from './TrainingFinished.module.scss';
  * @param {string} trainingTime - Время тренировки
  * @param {function} resetTraining - Функция для сброса тренировки.
  * @param {number} countSymbols - Количество символов.
- * @param {string} pressedKey - Нажатая клавиша.
  * @returns {JSX.Element} - Отрисованный обучающий завершенный компонент.
  */
 
@@ -23,28 +22,12 @@ export const TrainingFinished = ({ accuracy, speed, trainingTime, resetTraining,
     <>
       <h2 className={styles.title}><TypewriterText text={'Тренировка завершена'} /></h2>
       
-      <h2 className={styles.result__title}>Результат:</h2>
-      <div className={styles.indicators}>
-        <div className={styles.indicator}>
-          <MdSpeed className={`${styles.logo} ${styles.themeLogo}`} />
-          <div className={styles.indicators__name}>Символов в минуту:</div>
-          <div className={styles.indicators__value}>{speed}</div>
-        </div>
-        <div className={styles.indicator}>
-          <VscSymbolKey className={`${styles.logo} ${styles.themeLogo}`} />
-          <div className={styles.indicators__name}>Кол-во символов:</div>
-          <div className={styles.indicators__value}>{countSymbols}</div>
-        </div>
-        <div className={styles.indicator}>
-          <BiTime className={`${styles.logo} ${styles.themeLogo}`} />
-          <div className={styles.indicators__name}>Время:</div>
-          <div className={styles.indicators__value}>{trainingTime}</div>
-        </div>
-        <div className={styles.indicator}>
-          <BiErrorCircle className={`${styles.logo} ${styles.themeLogo}`} />
-          <div className={styles.indicators__name}>Точность:</div>
-          <div className={styles.indicators__value}>{accuracy}%</div>
-        </div>
+      <h2>Результат:</h2>
+      <div className={styles.statistics}>
+        <Statistics icon={MdSpeed} name='Символов в минуту:' value={speed} first={true}/>
+        <Statistics icon={VscSymbolKey} name='Кол-во символов:' value={countSymbols}/>
+        <Statistics icon={BiTime} name='Время:' value={trainingTime}/>
+        <Statistics icon={BiErrorCircle} name='Точность:' value={accuracy} last={true}/>
       </div>
 			<div className={ styles.block }>
 				<Btn onclick={resetTraining} text='Начать заново'/>

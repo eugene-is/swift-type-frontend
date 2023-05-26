@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GiKeyboard } from 'react-icons/gi';
+import { BiMoon, BiSun } from 'react-icons/bi';
 
 import { Btn } from '../';
+import { useTheme } from '../../hooks/use-theme';
 import styles from './Header.module.scss';
 
 /**
@@ -10,7 +12,20 @@ import styles from './Header.module.scss';
  * 
  * @returns {JSX.Element} - Отображаемый компонент заголовка.
  */
+
 export const Header = () => {
+  const { theme, setTheme } = useTheme();
+
+  const handleThemeToggle = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  const ThemeIcon = theme === 'light' ? BiMoon : BiSun;
+
   const isAuth = false;
 
   const onClickLogout = () => {};
@@ -46,14 +61,21 @@ export const Header = () => {
                   <>
                     <ul className={`${styles.nav__list} ${styles.themeText}`}>
                       <li>
-                        <Btn text="Sign In" className="two" link="/login" />
-                      </li>
-                      <li>
-                        <Btn text="Sign Up" className="one" link="/register" />
+                        <div className={ styles.btnShow }>
+                          <Btn text="Sign In" className="two" link="/login" />
+                          <div className={ styles.btnHidden }>
+                            <Btn text="Sign Up" className="one" link="/register" />
+                          </div>
+                        </div>
                       </li>
                     </ul>
                   </>
                 )}
+              </li>
+              <li>
+                <div className='themeIcon' onClick={handleThemeToggle}>
+                  <ThemeIcon className='themeLogo' size='2em'/>
+                </div>
               </li>
             </ul>
           </nav>

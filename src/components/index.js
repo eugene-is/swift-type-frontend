@@ -5,3 +5,4 @@ export * from "./Keyboard";
 export * from "./TrainingFinished";
 export * from './TrainingInProgress';
 export * from "./TypewriterText";
+export * from "./Statistics";
