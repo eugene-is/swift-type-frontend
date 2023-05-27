@@ -13,7 +13,7 @@ export const TypewriterText = ({ text }) => {
   const displayText = useTypewriter(text);
 
   return (
-    <h1>{displayText}</h1>
+    <div>{displayText}</div>
   );
 };
 

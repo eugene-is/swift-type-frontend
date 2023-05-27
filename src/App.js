@@ -1,9 +1,18 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Header } from "./components";
 import { Home, Trainer, Rating, Registration, Login } from "./pages";
+import { fetchAuthMe, isAuthSelect } from './redux/slices/auth'
 
 export default function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(isAuthSelect)
+
+  React.useEffect(() => {
+    dispatch(fetchAuthMe())
+  }, []);
   return (
     <div className='themeContainer wrapper'>
       <Header />

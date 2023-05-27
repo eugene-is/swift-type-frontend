@@ -6,6 +6,8 @@ import { BiMoon, BiSun } from 'react-icons/bi';
 import { Btn } from '../';
 import { useTheme } from '../../hooks/use-theme';
 import styles from './Header.module.scss';
+import { useDispatch, useSelector } from 'react-redux'
+import { isAuthSelect, logout } from '../../redux/slices/auth'
 
 /**
  * Компонент шапки приложения.
@@ -26,9 +28,15 @@ export const Header = () => {
 
   const ThemeIcon = theme === 'light' ? BiMoon : BiSun;
 
-  const isAuth = false;
+  const dispatch = useDispatch();
+  const isAuth = useSelector(isAuthSelect)
 
-  const onClickLogout = () => {};
+  const onClickLogout = () => {
+    if(window.confirm('Вы действительно хотите выйти?')){
+      dispatch(logout());
+      window.localStorage.removeItem('token');
+    }
+  };
 
   return (
     <header className={styles.header}>

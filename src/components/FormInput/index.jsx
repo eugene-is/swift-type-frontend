@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+
 
 import styles from './FormInput.module.scss'
 
@@ -14,24 +14,22 @@ import styles from './FormInput.module.scss'
  * @returns {JSX.Element} - отображаемый компонент ввода формы.
 */
 
-export const FormInput = ({ className, type, name, placeholder, labelText }) => {
+export const FormInput = ({ className, type, name, placeholder, labelText, register, error, textError}) => {
+  const showError = error !== undefined && error !== '';
+  const checkbox = type === 'checkbox';
+  
   return (
-    <div className={styles.block}>
-      <h2 className={`${styles.text} ${styles.themeText}`}>{labelText}</h2>
+    <div className={`${styles.block} ${checkbox ? styles.checkbox : ''}`}>
+      <h2 className={`${checkbox ? '' : styles.text} ${styles.themeText}`}>{labelText}</h2>
+      {error && <span className={styles.errorText}>{error}</span>}
       <input
-        className={`${styles.inputForm} ${styles.themeInput} ${className}`}
+        className={`${styles.inputForm} ${styles.themeInput} ${className} ${showError ? styles.errorInput : ''}`}
         type={type}
         name={name}
         placeholder={placeholder}
+        {...register(name, { required: textError })}
       />
     </div>
   );
 }
 
-FormInput.propTypes = {
-  className: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  labelText: PropTypes.string.isRequired,
-};

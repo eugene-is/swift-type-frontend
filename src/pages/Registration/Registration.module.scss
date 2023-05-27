@@ -1,14 +1,10 @@
 @import '../../scss/index.scss';
 
 .form {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	&__content {
+		margin: auto;
 		width: 360px;
 		padding: 20px;
-		position: relative;
 		box-shadow: 5px 10px 50px rgba(16, 112, 177, 0.5);
 		border-radius: 8px;
 		display: flex;
