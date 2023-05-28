@@ -6,6 +6,7 @@
 }
 
 .inputForm[type='text'],
+.inputForm[type='email'],
 .inputForm[type='password'] {
 	margin-left: 5px;
 	padding: 11px 21px;
@@ -19,9 +20,9 @@
 }
 
 .inputForm[type='text']:focus,
+.inputForm[type='email']:focus,
 .inputForm[type='password']:focus {
 	width: 310px;
-	border-color: black;
 	opacity: 1;
 }
 

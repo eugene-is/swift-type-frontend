@@ -17,7 +17,6 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
 	return data
 })
 
-
 const initialState = {
 	data: null,
 	status: 'loading',
@@ -32,6 +31,7 @@ const authSlice = createSlice({
 		},
 	},
 	extraReducers: {
+		// Авторизация
 		[fetchAuth.pending]: state => {
 			state.status = 'loading'
 			state.data = null
@@ -44,6 +44,8 @@ const authSlice = createSlice({
 			state.status = 'error'
 			state.data = null
 		},
+
+		// Регистрация
 		[fetchRegister.pending]: state => {
 			state.status = 'loading'
 			state.data = null
@@ -52,10 +54,12 @@ const authSlice = createSlice({
 			state.status = 'loaded'
 			state.data = action.payload
 		},
-		[fetchRegister.rejected]: state => {
-			state.status = 'error'
-			state.data = null
+		[fetchRegister.rejected]: (state, action) => {
+			state.status = 'error';
+			state.data = null;
 		},
+
+		// Обо мне
 		[fetchAuthMe.pending]: state => {
 			state.status = 'loading'
 			state.data = null

@@ -13,8 +13,8 @@ import styles from './Statistics.module.scss';
  * @returns {JSX.Element} - Отображаемый компонент клавиатуры.
  */
 
-export const Statistics = ({ icon: Icon = null, name = '', value = '', first = false, last = false, numbers = false }) => {
-  const indicatorsClassName = `${styles.indicators} ${numbers ? styles.numbers : ''} ${first ? styles.first : ''} ${last ? styles.last : ''}`;
+export const Statistics = ({ icon: Icon = null, name = '', value = '', first = false, last = false, shortsStat = false }) => {
+  const indicatorsClassName = `${styles.indicators} ${shortsStat ? styles.shortsStat : ''} ${first ? styles.first : ''} ${last ? styles.last : ''}`;
   const indicatorClassName = `${styles.indicator} ${first ? styles.first : ''} ${last ? styles.last : ''}`;
 
   return (

@@ -23,7 +23,7 @@ export const FormInput = ({ className, type, name, placeholder, labelText, regis
       <h2 className={`${checkbox ? '' : styles.text} ${styles.themeText}`}>{labelText}</h2>
       {error && <span className={styles.errorText}>{error}</span>}
       <input
-        className={`${styles.inputForm} ${styles.themeInput} ${className} ${showError ? styles.errorInput : ''}`}
+        className={`${styles.inputForm} ${styles.themeInput} ${styles.themeText} ${className} ${showError ? styles.errorInput : ''}`}
         type={type}
         name={name}
         placeholder={placeholder}

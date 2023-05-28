@@ -1,7 +1,7 @@
 @import '../../scss/index.scss';
 
 .indicators {
-	width: 200px;
+	min-width: 120px;
 	display: flex;
 	justify-content: space-around;
 	border: 1px solid #d9d9d9;
@@ -22,19 +22,26 @@
 }
 
 .indicator {
+	text-align: center;
 	display: flex;
 	font-size: 12px;
 	font-family: 'PT Mono', monospace;
 	padding: 10px;
 	align-items: center;
 	padding-right: 20px;
+	.logo {
+		min-width: 20px;
+		min-height: 20px;
+		margin-right: 10px;
+	}
 }
 
-.numbers {
-	width: 40px;
-}
-
-.logo {
-	font-size: 2em;
-	margin-right: 15px;
+.shortsStat {
+	.indicator {
+		padding: 0;
+	}
+	min-width: 70px;
+	.logo {
+		margin: 0;
+	}
 }

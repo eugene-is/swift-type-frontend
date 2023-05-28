@@ -63,7 +63,17 @@ export const Header = () => {
               <li>
                 {isAuth ? (
                   <>
-                    <Btn onclick={onClickLogout} text="Logout" />
+                    <ul className={`${styles.nav__list} ${styles.themeText}`}>
+                      <li>
+                        <div className={ styles.btnShow }>
+                          <Btn text="Account" className="two" link="/account" />
+                          <div className={ styles.btnHidden }>
+                          <Btn onclick={onClickLogout} text="Logout" />
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    
                   </>
                 ) : (
                   <>

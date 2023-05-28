@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Header } from "./components";
-import { Home, Trainer, Rating, Registration, Login } from "./pages";
+import { Home, Trainer, Rating, Registration, Login, Account } from "./pages";
 import { fetchAuthMe, isAuthSelect } from './redux/slices/auth'
 
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
 
   React.useEffect(() => {
     dispatch(fetchAuthMe())
+    // eslint-disable-next-line
   }, []);
   return (
     <div className='themeContainer wrapper'>
@@ -22,6 +23,7 @@ export default function App() {
         <Route path='/register' element={<Registration /> }></Route>
         <Route path='/trainer' element={<Trainer /> }></Route>
         <Route path='/rating' element={<Rating /> }></Route>
+        <Route path='/account' element={<Account /> }></Route>
       </Routes>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -18,7 +19,12 @@ export const Login = () => {
 
 	const dispatch = useDispatch();
 
-	const { register, handleSubmit, setError, formState: { errors, isValid} } = useForm({
+	const navigate = useNavigate();
+
+	const [errorMessage, setErrorMessage] = useState('');
+
+
+	const { register, handleSubmit, setError, formState: { errors, isValid}, reset } = useForm({
 		defaultValues: {
 			email: '',
 			password: ''
@@ -28,10 +34,9 @@ export const Login = () => {
 
 	const onSubmit = async (values) => {
 		const data = await dispatch(fetchAuth(values));
-
 		if(!data.payload) {
-			return alert('Не удалось авторизоваться');
-
+			reset();
+			return setErrorMessage('Неверный логин или пароль');
 		}
 		if('token' in data.payload){
 			window.localStorage.setItem('token', data.payload.token);
@@ -56,7 +61,7 @@ export const Login = () => {
 					placeholder="Your Email"
 					labelText="Email"
 					textError='Введите email'
-					error={errors.email?.message}
+					error={errors.email?.message || errorMessage}
 					register={register}
 				/>
 				<FormInput
@@ -67,7 +72,7 @@ export const Login = () => {
 					placeholder="Password"
 					labelText="Password"
 					textError='Введите пароль'
-					error={errors.password?.message}
+					error={errors.password?.message || errorMessage}
 					register={register}
 				/>
 				<Btn text="Submit" className="one" type='submit' />

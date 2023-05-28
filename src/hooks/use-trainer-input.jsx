@@ -21,7 +21,8 @@ export const useTrainerInput = () => {
   const [highlightMode, setHighlightMode] = useState(false); // Режим подсветки
 
   useEffect(() => {
-    generateRandomText();
+    //generateRandomText();
+    toggleLanguage();
     inputRef.current.focus();
     document.addEventListener('keydown', handleKeyDown); // Обработчик нажатия клавиши
     document.addEventListener('keyup', handleKeyUp); // Обработчик отпускания клавиши
@@ -65,8 +66,8 @@ export const useTrainerInput = () => {
       'A third sentence to test your skills.',
     ];
   
-    const texts = language === 'russian' ? russianTexts : englishTexts;
-
+    const texts = language === 'russian' ? englishTexts : russianTexts;
+    
     const numberOfSentences = 5;
     const randomSentences = [];
 
@@ -78,7 +79,7 @@ export const useTrainerInput = () => {
     const randomText = randomSentences.join(' ');
     setRandomText(randomText);
   };
-
+  console.log(language);
   /**
    * Обработчик нажатия клавиши.
    * 
@@ -254,6 +255,7 @@ export const useTrainerInput = () => {
     toggleLanguage,
     inputText,
     randomText,
+    language,
     highlightMode,
     currentIndex,
     strictMode,

@@ -15,8 +15,14 @@ import styles from './Btn.module.scss';
  * @returns {JSX.Element} - отображаемый компонент кнопки.
 */
 
-export const Btn = ({ text, className, link = '', type = '' , onclick = ''}) => {
-  if (onclick){
+export const Btn = ({ text, className, link = '', type = '' , onclick = '', icon = null}) => {
+  if (icon && onclick) {
+    return (
+      <button onClick={onclick} className={`${styles.btn} ${className}`}>
+        {React.createElement(icon, { className: `${styles.logo} ${styles.themeLogo}` })}
+      </button>
+    );
+  } else if (onclick){
     return (
       <button onClick={onclick} className={`${styles.btn} ${className}`}>
         <span className={styles.themeText}>{text}</span>
@@ -43,4 +49,5 @@ Btn.propTypes = {
   className: PropTypes.string,
   link: PropTypes.string,
   type: PropTypes.string,
+  icon: PropTypes.elementType,
 };

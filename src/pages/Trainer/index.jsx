@@ -17,6 +17,7 @@ export const Trainer = () => {
     currentIndex,
     highlightMode,
     strictMode,
+    language,
     pressedKey,
     inputRef,
     startTime,
@@ -61,6 +62,8 @@ export const Trainer = () => {
           countSymbols={inputText.length}
           trainingTime={(endTime - startTime) / 1000}
           resetTraining={resetTraining}
+          strictMode={strictMode}
+          language={language}
         />
       )}
     </div>
