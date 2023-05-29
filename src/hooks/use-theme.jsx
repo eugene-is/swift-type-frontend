@@ -1,21 +1,26 @@
-import { useLayoutEffect, useState } from 'react';
-
-/**
- * Хук для управления темой приложения.
- * 
- * @returns {object} - Возвращает объект со значением текущей темы и функцией для ее изменения.
- */
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setTheme } from '../redux/slices/theme.js';
 
 export const useTheme = () => {
   const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
   const defaultTheme = isDarkTheme ? 'dark' : 'light';
 
-  const [theme, setTheme] = useState(localStorage.getItem('app-theme') || defaultTheme);
+  const theme = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    dispatch(setTheme(localStorage.getItem('app-theme') || defaultTheme));
+  }, [dispatch]);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('app-theme', theme);
   }, [theme]);
 
-  return { theme, setTheme };
+  const updateTheme = (newTheme) => {
+    dispatch(setTheme(newTheme));
+  };
+
+  return { theme, updateTheme }; // Возвращаем исправленное имя функции
 };

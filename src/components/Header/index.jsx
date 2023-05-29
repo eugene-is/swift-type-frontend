@@ -16,14 +16,11 @@ import { isAuthSelect, logout } from '../../redux/slices/auth'
  */
 
 export const Header = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, updateTheme } = useTheme();
 
-  const handleThemeToggle = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    updateTheme(newTheme); // Исправленный вызов функции
   };
 
   const ThemeIcon = theme === 'light' ? BiMoon : BiSun;
@@ -91,7 +88,7 @@ export const Header = () => {
                 )}
               </li>
               <li>
-                <div className='themeIcon' onClick={handleThemeToggle}>
+                <div className='themeIcon' onClick={toggleTheme}>
                   <ThemeIcon className='themeLogo' size='2em'/>
                 </div>
               </li>

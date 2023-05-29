@@ -23,7 +23,7 @@
 }
 
 .key.active {
-	background-color: #c7d0d4;
+	background-color: #c7d0d4 !important;
 }
 
 .specialLetters {
@@ -71,4 +71,28 @@
 .enter {
 	width: 88px;
 	text-align: right;
+}
+.purpleKey {
+	background-color: #C14482;
+}
+
+.greenKey {
+	background-color: #ADC144;
+}
+
+.orangeKey {
+	background-color: #E49B0F;
+}
+
+.blueKey {
+	background-color: #0F78E4;
+}
+
+
+.steelBlueKey {
+	background-color: #0FBDE4;
+}
+
+.darkPurple{
+	background-color: #9B3B9A;
 }

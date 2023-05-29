@@ -173,7 +173,6 @@ export const useTrainerInput = () => {
     setEndTime(null);
     setErrorCount(0);
     setErrorCountStrictMode(0);
-    generateRandomText();
     setTimeout(() => inputRef.current.focus(), 0);
   };
 

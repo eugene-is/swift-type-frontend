@@ -45,6 +45,10 @@ export const TrainingInProgress = ({
           <input type="checkbox" checked={highlightMode} onChange={handleHighlightModeChange} />
           Подсветка текста
         </label>
+        <label>
+          <input type="checkbox" />
+          Подсветка клавиатуры
+        </label>
         <Btn onclick={toggleLanguage} text="Переключить язык" />
       </div>
 
