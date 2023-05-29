@@ -161,7 +161,7 @@ export const Rating = () => {
       {sortedTrainers.map((obj, index) => (
         <div className={styles.statistics} key={index}>
           <Statistics name={count++} shortsStat={true} first={true}/>
-          <Statistics name={obj.user.fullName}/>
+          <Statistics name={obj.user.username}/>
           <Statistics name={`${obj.charactersPerMinute} сим/м`}/>
           <Statistics name={`${obj.characterCount} сим.`}/>
           <Statistics name={obj.language}/>

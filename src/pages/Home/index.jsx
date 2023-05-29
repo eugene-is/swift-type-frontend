@@ -11,7 +11,7 @@ import { Btn, TypewriterText } from '../../components';
 */
 
 export const Home = () => {
-	const username = useSelector((state) => state.auth.data?.fullName || '');
+	const username = useSelector((state) => state.auth.data?.username || '');
 
   return (
 		<div className={ styles.themeContainer }>

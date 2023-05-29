@@ -30,7 +30,7 @@ export const Registration = () => {
 
 	const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
 		defaultValues: {
-			fullName: '',
+			username: '',
 			email: '',
 			password: ''
 		},
@@ -43,7 +43,7 @@ export const Registration = () => {
 		if (values.password !== values.passwordSecond) {
       reset();
 			return setErrorPassVerification('Пароли не совпадают');
-    } else if (values.fullName.length < 2) {
+    } else if (values.username.length < 2) {
 			reset();
 			return setErrorName('Укажите корректное имя');
 		} else if (values.password.length < 5) {
@@ -70,11 +70,11 @@ export const Registration = () => {
 				<FormInput
 					className={styles.customInput}
 					type="text"
-					name="fullName"
+					name="username"
 					placeholder="Ваше имя"
 					labelText="Name"
 					textError='Введите имя'
-					error={errors.fullName?.message || errorName || errorMessage}
+					error={errors.username?.message || errorName || errorMessage}
 					register={register}
 				/>
 				<FormInput

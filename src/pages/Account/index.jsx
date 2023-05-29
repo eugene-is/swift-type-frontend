@@ -53,7 +53,7 @@ export const Account = () => {
 			<div className={styles.div}>
 				<IoMdStats className={ styles.logo }/>
 				<h1 className={ styles.title }><TypewriterText text={ 'Your account' }/></h1>
-        <h2>Ваше имя: {userData.fullName}</h2>
+        <h2>Ваше имя: {userData.username}</h2>
         <h2>Ваш email: {userData.email}</h2>
         <h2>Ваш email: {userData.createdAt}</h2>
 			</div>
