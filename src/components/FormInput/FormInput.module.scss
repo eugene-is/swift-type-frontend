@@ -34,19 +34,19 @@
 }
 
 .errorText {
-  color: red;
-	margin-top: 4px
+	color: red;
+	margin-top: 4px;
 }
 
 .errorInput {
-  border-color: red !important; /* Красная граница при ошибке */
+	border-color: red !important; /* Красная граница при ошибке */
 }
 .errorInput:focus {
-  border-color: red !important; /* Красная граница при ошибке */
+	border-color: red !important; /* Красная граница при ошибке */
 }
 
 .errorInput::placeholder {
-  color: red !important; /* Красная граница при ошибке */
+	color: red !important; /* Красная граница при ошибке */
 }
 
 .checkbox {

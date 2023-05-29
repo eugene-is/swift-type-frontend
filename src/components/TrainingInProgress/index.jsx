@@ -4,9 +4,12 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import { Btn } from '../';
 import styles from './TrainerInput.module.scss';
 
+import { useDispatch } from 'react-redux';
+import { toggleFilledKeyboard } from '../../redux/slices/keyboard.js';
+
 /**
  * Компонент отображающий настройку индивидуальной тренировки, форму ввода текста и сам текст.
- * 
+ *
  * @param {boolean} highlightMode - Режим подсветки текста.
  * @param {boolean} strictMode - Строгий режим.
  * @param {string} randomText - Случайный текст для тренировки.
@@ -22,62 +25,83 @@ import styles from './TrainerInput.module.scss';
  */
 
 export const TrainingInProgress = ({
-  highlightMode,
-  strictMode,
-  randomText,
-  currentIndex,
-  inputText,
-  inputRef,
-  handleInputChange,
-  handleCheckboxChange,
-  handleEnterPress,
-  handleHighlightModeChange,
-  toggleLanguage,
+	highlightMode,
+	strictMode,
+	randomText,
+	currentIndex,
+	inputText,
+	inputRef,
+	handleInputChange,
+	handleCheckboxChange,
+	handleEnterPress,
+	handleHighlightModeChange,
+	toggleLanguage,
 }) => {
-  return (
-    <div>
-      <div className={styles.settings}>
-        <label className={styles.icon}>
-          <input type="checkbox" checked={strictMode} onChange={handleCheckboxChange} />
-          Строгий режим<BsQuestionCircle className={styles.icon} />
-        </label>
-        <label>
-          <input type="checkbox" checked={highlightMode} onChange={handleHighlightModeChange} />
-          Подсветка текста
-        </label>
-        <label>
-          <input type="checkbox" />
-          Подсветка клавиатуры
-        </label>
-        <Btn onclick={toggleLanguage} text="Переключить язык" />
-      </div>
+	const dispatch = useDispatch();
+	const handleToggleFilledKeyboard = () => {
+		dispatch(toggleFilledKeyboard());
+	};
+	return (
+		<div>
+			<div className={styles.settings}>
+				<label className={styles.icon}>
+					<input
+						type='checkbox'
+						checked={strictMode}
+						onChange={handleCheckboxChange}
+					/>
+					Строгий режим
+					<BsQuestionCircle className={styles.icon} />
+				</label>
+				<label>
+					<input
+						type='checkbox'
+						checked={highlightMode}
+						onChange={handleHighlightModeChange}
+					/>
+					Подсветка текста
+				</label>
+				<label>
+					<input type='checkbox' onChange={handleToggleFilledKeyboard} />
+					Подстветка клавиатуры
+				</label>
+				<Btn onclick={toggleLanguage} text='Переключить язык' />
+			</div>
 
-      <div className={`${styles.container} ${styles.inputForm} ${styles.borderBottomColor}`}>
-        <form action="">
-          <input
-            className={styles.inputText}
-            ref={inputRef}
-            type="text"
-            value={inputText}
-            placeholder="Для завершения тренировки нажмите Enter или введите весь текст."
-            onChange={handleInputChange}
-            onKeyDown={handleEnterPress}
-          />
-        </form>
-      </div>
+			<div
+				className={`${styles.container} ${styles.inputForm} ${styles.borderBottomColor}`}
+			>
+				<form action=''>
+					<input
+						className={styles.inputText}
+						ref={inputRef}
+						type='text'
+						value={inputText}
+						placeholder='Для завершения тренировки нажмите Enter или введите весь текст.'
+						onChange={handleInputChange}
+						onKeyDown={handleEnterPress}
+					/>
+				</form>
+			</div>
 
-      <div className={styles.text}>
-        {randomText.split('').map((char, index) => (
-          <span
-            key={index}
-            className={`${index === currentIndex ? 'current' : ''}
+			<div className={styles.text}>
+				{randomText.split('').map((char, index) => (
+					<span
+						key={index}
+						className={`${index === currentIndex ? 'current' : ''}
             ${highlightMode && index < currentIndex ? styles.correctChar : ''}
-            ${highlightMode && index === currentIndex && char !== inputText[currentIndex] ? styles.incorrectChar : ''}`}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+            ${
+							highlightMode &&
+							index === currentIndex &&
+							char !== inputText[currentIndex]
+								? styles.incorrectChar
+								: ''
+						}`}
+					>
+						{char}
+					</span>
+				))}
+			</div>
+		</div>
+	);
 };
