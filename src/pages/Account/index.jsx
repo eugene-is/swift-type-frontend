@@ -8,9 +8,9 @@ import { MdSpeed } from 'react-icons/md';
 import { VscSymbolKey } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { isAuthSelect } from '../../redux/slices/auth';
-
-import { Btn, Statistics, TypewriterText } from '../../components';
+import { isAuthSelect, fetchUpdate } from '../../redux/slices/auth';
+import { useState } from 'react';
+import { Btn, Statistics, TypewriterText, FormInput } from '../../components';
 import {
 	fetchGetAllOneUser,
 	fetchRemoveTrainer,
@@ -25,6 +25,59 @@ import styles from './Account.module.scss';
 
 export const Account = () => {
 	const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [usernameInputVisible, setUsernameInputVisible] = useState(false);
+  const [emailInputVisible, setEmailInputVisible] = useState(false);
+  const [passwordInputVisible, setPasswordInputVisible] = useState(false);
+
+	const [errorName, setErrorName] = useState('');
+
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+	const handleOldPasswordChange = (event) => {
+    setOldPassword(event.target.value);
+  };
+
+  const handleSaveChanges = () => {
+    if (username) {
+			if (username.length < 2){
+				return setErrorName('Укажите корректное имя');
+			}
+      dispatch(fetchUpdate({ id: userData._id, username }));
+    }
+    if (email) {
+			dispatch(fetchUpdate({ id: userData._id, email }));
+		}
+		if (password) {
+      // Проверка старого пароля перед изменением пароля
+      if (oldPassword === userData.password || userData) {
+        dispatch(fetchUpdate({ id: userData._id, password }));
+      } else {
+        // Старый пароль не совпадает, выполнение действий в случае ошибки
+        console.log('Старый пароль неверный');
+        // Дополнительные действия, например, показать сообщение об ошибке или очистить поле старого пароля
+      }
+    }
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    setOldPassword('');
+  };
+
 
 	const isAuth = useSelector(isAuthSelect);
 	const { trainers } = useSelector((state) => state.trainers);
@@ -56,9 +109,93 @@ export const Account = () => {
 				<h1 className={styles.title}>
 					<TypewriterText text={'Your account'} />
 				</h1>
-				<h2>Ваше имя: {userData.username}</h2>
-				<h2>Ваш email: {userData.email}</h2>
-				<h2>Ваш email: {userData.createdAt}</h2>
+				<div>
+					<h2 className={styles.text}>Ваше имя: {userData.username}</h2>
+					<div className={styles.updadesUser}>
+						
+						{/* Кнопка и поле для обновления имени пользователя */}
+						<Btn
+							className={''}
+							text='Обновить имя'
+							onclick={() => setUsernameInputVisible(true)}
+						/>
+						{/* <button onClick={() => setUsernameInputVisible(true)}>Обновить имя</button> */}
+						{usernameInputVisible && (
+							<div className={styles.updadeUser}>
+								<FormInput
+									textError='Введите имя'
+									error={errorName}
+									type="text"
+									value={username}
+									placeholder='Ваше имя'
+									onChange={handleUsernameChange}
+								/>
+								{/* <input type="text" value={username} onClick={handleUsernameChange} /> */}
+								{/* <button onClick={handleSaveChanges}>Сохранить</button> */}
+								<Btn
+									onclick={handleSaveChanges}
+									text='Сохранить'
+								/>
+							</div>
+						)}
+					</div>
+					<h2  className={styles.text}>Ваш email: {userData.email}</h2>
+					<div className={styles.updadesUser}>
+						{/* Кнопка и поле для обновления почты пользователя */}
+						<Btn
+							text='Обновить почту'
+							onclick={() => setEmailInputVisible(true)}
+						/>
+						{/* <button onClick={() => setEmailInputVisible(true)}>Обновить почту</button> */}
+						{emailInputVisible && (
+							<div className={styles.updadeUser}>
+								<FormInput
+									type="email"
+									value={email} 
+									onChange={handleEmailChange}
+									placeholder='Введите email'
+								/>
+								{/* <input type="email" value={email} onChange={handleEmailChange} />
+								<button onClick={handleSaveChanges}>Сохранить</button> */}
+								<Btn
+										onclick={handleSaveChanges}
+										text='Сохранить'
+									/>
+							</div>
+						)}
+					</div>
+					<div className={styles.updadesUser}>
+						{/* Кнопка и поле для обновления пароля пользователя */}
+							<Btn
+									text='Обновить пароль'
+									onclick={() => setPasswordInputVisible(true)}
+								/>
+							{/* <button onClick={() => setPasswordInputVisible(true)}>Обновить пароль</button> */}
+							{passwordInputVisible && (
+								<div className={styles.updadeUser}>
+									<FormInput
+											type="password"
+											value={oldPassword}
+											onChange={handleOldPasswordChange}
+											placeholder='Введите старый пароль'
+										/>
+										<FormInput
+											type="password"
+											value={password} 
+											onChange={handlePasswordChange}
+											placeholder='Введите новый пароль'
+										/>
+									{/* <input type="password" value={oldPassword} onChange={handleOldPasswordChange} placeholder="Старый пароль" />
+									<input type="password" value={password} onChange={handlePasswordChange} placeholder="Новый пароль" />
+									<button onClick={handleSaveChanges}>Сохранить</button> */}
+									<Btn
+										text='Сохранить'
+										onclick={() => handleSaveChanges(true)}
+									/>
+							</div>
+							)}
+					</div>
+				</div>
 			</div>
 			<h2>Ваши тренировки:</h2>
 			<div className={styles.statistics}>
@@ -79,7 +216,6 @@ export const Account = () => {
 							icon={AiTwotoneDelete}
 							onclick={() => onClickRemove(obj._id)}
 						/>
-						{/* <button onClick={() => onClickRemove(obj._id)}>Delete</button> */}
 						<Statistics name={count++} shortsStat={true} />
 						<Statistics name={new Date(obj.createdAt).toLocaleString()} />
 						<Statistics name={`${obj.charactersPerMinute} сим/м`} />

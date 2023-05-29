@@ -2,6 +2,7 @@
 
 .btn {
 	max-width: 200px;
+	max-height: 50px;
 	display: block;
 	padding: 14px 15px;
 	font-size: 14px;
@@ -13,6 +14,11 @@
 	border-radius: 8px;
 	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
 	border: 2px solid #c7d0d4;
+}
+
+.btnUpdate {
+	width: 150px;
+	font-size: 12px;
 }
 
 .btn:hover {

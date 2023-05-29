@@ -33,7 +33,13 @@ export const Btn = ({
 		);
 	} else if (onclick) {
 		return (
-			<button onClick={onclick} className={`${styles.btn} ${className}`}>
+			<button onClick={onclick} className={`${styles.btn} ${styles.btnUpdate} ${className}`}>
+				<span className={styles.themeText}>{text}</span>
+			</button>
+		);
+	} else if (onclick && text) {
+		return (
+			<button text={text} onClick={onclick} className={`${styles.btn} ${className}`}>
 				<span className={styles.themeText}>{text}</span>
 			</button>
 		);
