@@ -32,6 +32,15 @@ export const fetchRemoveTrainer = createAsyncThunk(
 	}
 );
 
+export const fetchRemoveTrainersAll = createAsyncThunk(
+	'/trainers/fetchRemoveTrainersAll',
+	async () => {
+		await axios.delete('/trainers');
+	}
+);
+
+
+
 const initialState = {
 	trainers: {
 		items: [],
@@ -85,6 +94,17 @@ const trainersSlice = createSlice({
 				(obj) => obj._id !== action.meta.arg
 			);
 		},
+		[fetchRemoveTrainersAll.pending]: (state) => {
+      state.trainers.items = [];
+      state.trainers.status = 'loading';
+    },
+    [fetchRemoveTrainersAll.fulfilled]: (state) => {
+      state.trainers.items = [];
+      state.trainers.status = 'loaded';
+    },
+    [fetchRemoveTrainersAll.rejected]: (state) => {
+      state.trainers.status = 'error';
+    },
 	},
 });
 

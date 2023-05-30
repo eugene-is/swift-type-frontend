@@ -14,6 +14,7 @@ import { Btn, Statistics, TypewriterText, FormInput } from '../../components';
 import {
 	fetchGetAllOneUser,
 	fetchRemoveTrainer,
+	fetchRemoveTrainersAll
 } from '../../redux/slices/trainers.js';
 import styles from './Account.module.scss';
 
@@ -122,6 +123,13 @@ export const Account = () => {
 		}
 	};
 
+	const onClickAllRemove = (id) => {
+		if (window.confirm('Вы действительно хотите выйти?')) {
+			console.log(id);
+			dispatch(fetchRemoveTrainersAll(id));
+		}
+	};
+
 	return (
 		<div className={`${styles.container} ${styles.themeText}`}>
 			<div className={styles.div}>
@@ -129,6 +137,10 @@ export const Account = () => {
 				<h1 className={styles.title}>
 					<TypewriterText text={'Личный кабинет'} />
 				</h1>
+				{/* <Btn
+							icon={AiTwotoneDelete}
+							onclick={() => onClickAllRemove()}
+				/> */}
 				<div>
 					<h2 className={styles.text}>Ваше имя: {userData.username}</h2>
 					<h2  className={styles.text}>Ваш email: {userData.email}</h2>
@@ -211,7 +223,7 @@ export const Account = () => {
 			</div>
 			<h2 className={styles.text}>Ваши тренировки</h2>
 			<div className={styles.statistics}>
-				<Statistics name='Удаление' shortsStat={true} first={true} />
+				<Statistics onclick={onClickAllRemove} name='Очистить все' shortsStat={true} first={true} />
 				<Statistics name='№' shortsStat={true} />
 				<Statistics name='Дата' />
 				<Statistics icon={MdSpeed} name='Символов в минуту:' />

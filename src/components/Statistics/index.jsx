@@ -20,16 +20,18 @@ export const Statistics = ({
 	first = false,
 	last = false,
 	shortsStat = false,
+	onclick = null,
 }) => {
 	const indicatorsClassName = `${styles.indicators} ${
 		shortsStat ? styles.shortsStat : ''
-	} ${first ? styles.first : ''} ${last ? styles.last : ''}`;
+	} ${first ? styles.first : ''} ${last ? styles.last : ''}
+	${onclick ? styles.onclick : ''}`;
 	const indicatorClassName = `${styles.indicator} ${
 		first ? styles.first : ''
 	} ${last ? styles.last : ''}`;
 
 	return (
-		<div className={indicatorsClassName}>
+		<div onClick={onclick} className={indicatorsClassName}>
 			<div className={indicatorClassName} key={name}>
 				{Icon && <Icon className={`${styles.logo} ${styles.themeLogo}`} />}
 				<div className={styles.indicators__name}>{name}</div>
