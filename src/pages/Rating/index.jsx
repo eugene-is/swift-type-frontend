@@ -57,10 +57,9 @@ export const Rating = () => {
 			<div className={styles.div}>
 				<IoMdStats className={styles.logo} />
 				<h1 className={styles.title}>
-					<TypewriterText text={'Rating'} />
+					<TypewriterText text={'Рейтинг'} />
 				</h1>
 			</div>
-			<h2>ТОП 100</h2>
 			<div className={styles.statistics}>
 				<Statistics name='№' shortsStat={true} first={true} />
 				<Statistics name='Имя' />

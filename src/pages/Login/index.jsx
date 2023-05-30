@@ -57,7 +57,7 @@ export const Login = () => {
 		<div className={`${styles.form} ${styles.themeContainer}`}>
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.form__content}>
 				<h1 className={`${styles.form__title} ${styles.themeText}`}>
-					<TypewriterText text={'Login'} />
+					<TypewriterText text={'Авторизация'} />
 				</h1>
 				<FormInput
 					className={styles.customInput}
@@ -80,7 +80,7 @@ export const Login = () => {
 					error={errors.password?.message || errorMessage}
 					register={register}
 				/>
-				<Btn text='Submit' className='one' type='submit' />
+				<Btn text='Войти' className='one' type='submit' />
 			</form>
 		</div>
 	);

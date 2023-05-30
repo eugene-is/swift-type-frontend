@@ -68,7 +68,7 @@ export const Registration = () => {
 		<div className={`${styles.form} ${styles.themeContainer}`}>
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.form__content}>
 				<h1 className={`${styles.form__title} ${styles.themeText}`}>
-					<TypewriterText text={'Registration'} />
+					<TypewriterText text={'Регистрация'} />
 				</h1>
 				<FormInput
 					className={styles.customInput}
@@ -124,7 +124,7 @@ export const Registration = () => {
 					error={errors.checkbox?.message}
 					register={register}
 				/>
-				<Btn text='Submit' className='one' type='submit' />
+				<Btn text='Зарегестрироваться' className='one' type='submit' />
 			</form>
 		</div>
 	);

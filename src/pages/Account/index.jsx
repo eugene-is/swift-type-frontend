@@ -2,7 +2,6 @@ import React from 'react';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { BiErrorCircle, BiTime } from 'react-icons/bi';
 import { HiTranslate } from 'react-icons/hi';
-import { IoMdStats } from 'react-icons/io';
 import { IoCheckmarkSharp, IoCloseSharp } from 'react-icons/io5';
 import { MdSpeed } from 'react-icons/md';
 import { VscSymbolKey } from 'react-icons/vsc';
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { isAuthSelect, fetchUpdate } from '../../redux/slices/auth';
 import { useState } from 'react';
+import { FaUser } from 'react-icons/fa'
 import { Btn, Statistics, TypewriterText, FormInput } from '../../components';
 import {
 	fetchGetAllOneUser,
@@ -47,10 +47,29 @@ export const Account = () => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
+	
 	const handleOldPasswordChange = (event) => {
     setOldPassword(event.target.value);
   };
+
+	const handleUsernameButtonClick = () => {
+    setUsernameInputVisible(!usernameInputVisible);
+		setEmailInputVisible(false);
+		setPasswordInputVisible(false);
+  };
+
+	const handleEmailButtonClick = () => {
+    setEmailInputVisible(!emailInputVisible);
+		setUsernameInputVisible(false);
+		setPasswordInputVisible(false);
+  };
+
+	const handlePasswordButtonClick = () => {
+    setPasswordInputVisible(!passwordInputVisible);
+		setUsernameInputVisible(false);
+		setEmailInputVisible(false);
+  };
+	
 
   const handleSaveChanges = () => {
     if (username) {
@@ -78,6 +97,7 @@ export const Account = () => {
     setOldPassword('');
   };
 
+	let showhidden = false
 
 	const isAuth = useSelector(isAuthSelect);
 	const { trainers } = useSelector((state) => state.trainers);
@@ -105,101 +125,93 @@ export const Account = () => {
 	return (
 		<div className={`${styles.container} ${styles.themeText}`}>
 			<div className={styles.div}>
-				<IoMdStats className={styles.logo} />
+				<FaUser className={styles.logo} />
 				<h1 className={styles.title}>
-					<TypewriterText text={'Your account'} />
+					<TypewriterText text={'Личный кабинет'} />
 				</h1>
 				<div>
 					<h2 className={styles.text}>Ваше имя: {userData.username}</h2>
-					<div className={styles.updadesUser}>
-						
-						{/* Кнопка и поле для обновления имени пользователя */}
-						<Btn
-							className={''}
-							text='Обновить имя'
-							onclick={() => setUsernameInputVisible(true)}
-						/>
-						{/* <button onClick={() => setUsernameInputVisible(true)}>Обновить имя</button> */}
-						{usernameInputVisible && (
-							<div className={styles.updadeUser}>
-								<FormInput
-									textError='Введите имя'
-									error={errorName}
-									type="text"
-									value={username}
-									placeholder='Ваше имя'
-									onChange={handleUsernameChange}
-								/>
-								{/* <input type="text" value={username} onClick={handleUsernameChange} /> */}
-								{/* <button onClick={handleSaveChanges}>Сохранить</button> */}
-								<Btn
-									onclick={handleSaveChanges}
-									text='Сохранить'
-								/>
-							</div>
-						)}
-					</div>
 					<h2  className={styles.text}>Ваш email: {userData.email}</h2>
-					<div className={styles.updadesUser}>
-						{/* Кнопка и поле для обновления почты пользователя */}
-						<Btn
-							text='Обновить почту'
-							onclick={() => setEmailInputVisible(true)}
-						/>
-						{/* <button onClick={() => setEmailInputVisible(true)}>Обновить почту</button> */}
-						{emailInputVisible && (
-							<div className={styles.updadeUser}>
-								<FormInput
-									type="email"
-									value={email} 
-									onChange={handleEmailChange}
-									placeholder='Введите email'
-								/>
-								{/* <input type="email" value={email} onChange={handleEmailChange} />
-								<button onClick={handleSaveChanges}>Сохранить</button> */}
-								<Btn
+					<div className={styles.gg}>
+						<div className={styles.updadesUser}>
+
+							{/* Кнопка и поле для обновления имени пользователя */}
+							<Btn
+								className={''}
+								text='Обновить имя'
+								onclick={handleUsernameButtonClick}
+							/>
+							{usernameInputVisible && (
+								<div className={styles.updadeUser}>
+									<FormInput
+										textError='Введите имя'
+										error={errorName}
+										type="text"
+										value={username}
+										placeholder='Ваше имя'
+										onChange={handleUsernameChange}
+									/>
+									<Btn
 										onclick={handleSaveChanges}
 										text='Сохранить'
 									/>
-							</div>
-						)}
-					</div>
-					<div className={styles.updadesUser}>
-						{/* Кнопка и поле для обновления пароля пользователя */}
+								</div>
+							)}
+						</div>
+						<div className={styles.updadesUser}>
+							{/* Кнопка и поле для обновления почты пользователя */}
 							<Btn
-									text='Обновить пароль'
-									onclick={() => setPasswordInputVisible(true)}
-								/>
-							{/* <button onClick={() => setPasswordInputVisible(true)}>Обновить пароль</button> */}
-							{passwordInputVisible && (
+								text='Обновить почту'
+								onclick={handleEmailButtonClick}
+							/>
+							{emailInputVisible && (
 								<div className={styles.updadeUser}>
 									<FormInput
-											type="password"
-											value={oldPassword}
-											onChange={handleOldPasswordChange}
-											placeholder='Введите старый пароль'
-										/>
-										<FormInput
-											type="password"
-											value={password} 
-											onChange={handlePasswordChange}
-											placeholder='Введите новый пароль'
-										/>
-									{/* <input type="password" value={oldPassword} onChange={handleOldPasswordChange} placeholder="Старый пароль" />
-									<input type="password" value={password} onChange={handlePasswordChange} placeholder="Новый пароль" />
-									<button onClick={handleSaveChanges}>Сохранить</button> */}
-									<Btn
-										text='Сохранить'
-										onclick={() => handleSaveChanges(true)}
+										type="email"
+										value={email} 
+										onChange={handleEmailChange}
+										placeholder='Введите email'
 									/>
-							</div>
+									<Btn
+											onclick={handleSaveChanges}
+											text='Сохранить'
+										/>
+								</div>
 							)}
+						</div>
+						<div className={styles.updadesUser}>
+							{/* Кнопка и поле для обновления пароля пользователя */}
+								<Btn
+										text='Обновить пароль'
+										onclick={handlePasswordButtonClick}
+									/>
+								{passwordInputVisible && (
+									<div className={styles.updadeUser}>
+										<FormInput
+												type="password"
+												value={oldPassword}
+												onChange={handleOldPasswordChange}
+												placeholder='Введите старый пароль'
+											/>
+											<FormInput
+												type="password"
+												value={password} 
+												onChange={handlePasswordChange}
+												placeholder='Введите новый пароль'
+											/>
+										<Btn
+											text='Сохранить'
+											onclick={() => handleSaveChanges(true)}
+										/>
+								</div>
+								)}
+						</div>
 					</div>
 				</div>
 			</div>
-			<h2>Ваши тренировки:</h2>
+			<h2 className={styles.text}>Ваши тренировки</h2>
 			<div className={styles.statistics}>
-				<Statistics icon={AiTwotoneDelete} shortsStat={true} first={true} />
+				<Statistics name='Удаление' shortsStat={true} first={true} />
 				<Statistics name='№' shortsStat={true} />
 				<Statistics name='Дата' />
 				<Statistics icon={MdSpeed} name='Символов в минуту:' />

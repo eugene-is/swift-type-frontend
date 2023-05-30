@@ -41,7 +41,7 @@ export const Trainer = () => {
 	return (
 		<div className={`${styles.container} ${styles.themeText}`}>
 			<h1 className={styles.title}>
-				<TypewriterText text={'Blind Printing Training'} />
+				<TypewriterText text={'Тренажер слепой печати'} />
 			</h1>
 			{!endTime ? (
 				<>

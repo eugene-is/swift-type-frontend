@@ -17,6 +17,11 @@
 	height: 40px;
 }
 
+.gg {
+	display: flex;
+	justify-content: center;
+}
+
 .statistics {
 	display: flex;
 	justify-content: center;
@@ -24,12 +29,12 @@
 
 .updadesUser {
 	padding: 10px;
-	display: flex;
+	display: block;
 	justify-content: center;
 }
 
 .updadeUser {
-	display: flex;
+	display: block;
 }
 
 .text {

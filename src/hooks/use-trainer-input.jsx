@@ -200,8 +200,9 @@ export const useTrainerInput = () => {
 				errorCount++;
 			}
 		}
+		console.log(`${inputText.length} ---- ${errorCount}`)
 		const accuracy =
-			((inputText.length - Math.floor(errorCount / (6 - 2))) /
+			((inputText.length - Math.floor(errorCount)) /
 				inputText.length) *
 			100;
 		return accuracy.toFixed(2);

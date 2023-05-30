@@ -49,12 +49,12 @@ export const Header = () => {
 						<ul className={styles.nav__list}>
 							<li>
 								<Link to='/trainer'>
-									<span className={styles.themeText}>Trainer</span>
+									<span className={styles.themeText}>Тренажер</span>
 								</Link>
 							</li>
 							<li>
 								<Link to='/rating'>
-									<span className={styles.themeText}>Rating</span>
+									<span className={styles.themeText}>Рейтинг</span>
 								</Link>
 							</li>
 							<li>
@@ -63,9 +63,9 @@ export const Header = () => {
 										<ul className={`${styles.nav__list} ${styles.themeText}`}>
 											<li>
 												<div className={styles.btnShow}>
-													<Btn text='Account' className='two' link='/account' />
+													<Btn text='Уч.запись' className='two' link='/account' />
 													<div className={styles.btnHidden}>
-														<Btn onclick={onClickLogout} text='Logout' />
+														<Btn onclick={onClickLogout} text='Выйти' />
 													</div>
 												</div>
 											</li>
@@ -76,10 +76,10 @@ export const Header = () => {
 										<ul className={`${styles.nav__list} ${styles.themeText}`}>
 											<li>
 												<div className={styles.btnShow}>
-													<Btn text='Sign In' className='two' link='/login' />
+													<Btn text='Войти' className='two' link='/login' />
 													<div className={styles.btnHidden}>
 														<Btn
-															text='Sign Up'
+															text='Регистрация'
 															className='one'
 															link='/register'
 														/>
