@@ -44,14 +44,14 @@ export const TrainingInProgress = ({
 	return (
 		<div>
 			<div className={styles.settings}>
-				<label className={styles.icon}>
+				<label className={`${ styles.icon} ${styles.strictInf}`}>
 					<input
 						type='checkbox'
 						checked={strictMode}
 						onChange={handleCheckboxChange}
 					/>
 					Строгий режим
-					<BsQuestionCircle className={styles.icon} />
+					<BsQuestionCircle/>
 				</label>
 				<label>
 					<input
@@ -61,14 +61,13 @@ export const TrainingInProgress = ({
 					/>
 					Подсветка текста
 				</label>
-				<label>
+				<label className={`${ styles.icon} ${styles.keyboardInf}`}>
 					<input type='checkbox' onChange={handleToggleFilledKeyboard} />
 					Подстветка клавиатуры
-					<BsQuestionCircle className={styles.icon} />
+					<BsQuestionCircle/>
 				</label>
 				<Btn onclick={toggleLanguage} text='Переключить язык' />
 			</div>
-
 			<div
 				className={`${styles.container} ${styles.inputForm} ${styles.borderBottomColor}`}
 			>
@@ -84,7 +83,6 @@ export const TrainingInProgress = ({
 					/>
 				</form>
 			</div>
-
 			<div className={styles.text}>
 				{randomText.split('').map((char, index) => (
 					<span

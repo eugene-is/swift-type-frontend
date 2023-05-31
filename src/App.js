@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Account, Home, Login, Rating, Registration, Trainer } from './pages';
+import { Account, Home, Login, Rating, Registration, Trainer, PrivacyPolicy} from './pages';
 import { fetchAuthMe, isAuthSelect } from './redux/slices/auth';
 
 export default function App() {
@@ -24,6 +24,7 @@ export default function App() {
 				<Route path='/trainer' element={<Trainer />}></Route>
 				<Route path='/rating' element={<Rating />}></Route>
 				<Route path='/account' element={<Account />}></Route>
+				<Route path='/privacy-policy' element={<PrivacyPolicy />}></Route>
 			</Routes>
 		</div>
 	);

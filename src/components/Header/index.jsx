@@ -20,7 +20,7 @@ export const Header = () => {
 
 	const toggleTheme = () => {
 		const newTheme = theme === 'light' ? 'dark' : 'light';
-		updateTheme(newTheme); // Исправленный вызов функции
+		updateTheme(newTheme);
 	};
 
 	const ThemeIcon = theme === 'light' ? BiMoon : BiSun;

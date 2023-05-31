@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Btn, FormInput, TypewriterText } from '../../components';
 import { fetchRegister, isAuthSelect } from '../../redux/slices/auth';
@@ -119,11 +120,14 @@ export const Registration = () => {
 					helperText={errors.checkbox?.message}
 					type='checkbox'
 					name='checkbox'
-					labelText='I agree to the terms and conditions'
+					labelText='Я согласен с политикой конфиденциальности'
 					textError='Для успешной регистрации необходимо принять правила приложения.'
 					error={errors.checkbox?.message}
 					register={register}
 				/>
+				<Link to='/privacy-policy' className={`${styles.policy} ${styles.themeText}`}>
+				<span>Политика конфиденциальности</span>
+			</Link>
 				<Btn text='Зарегестрироваться' className='one' type='submit' />
 			</form>
 		</div>

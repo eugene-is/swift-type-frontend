@@ -81,7 +81,7 @@ export const useTrainerInput = () => {
 		const randomText = randomSentences.join(' ');
 		setRandomText(randomText);
 	};
-	console.log(language);
+
 	/**
 	 * Обработчик нажатия клавиши.
 	 *

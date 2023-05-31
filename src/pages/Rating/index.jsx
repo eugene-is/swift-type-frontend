@@ -28,10 +28,11 @@ export const Rating = () => {
 	}, []);
 
 	const weights = {
-		'Символов в минуту': 0.4,
-		'Кол-во символов': 0.3,
-		Время: 0.2,
-		Точность: 0.1,
+		'Символов в минуту': 0.3,
+		'Кол-во символов': 0.2,
+		'Время': 0.1,
+		'Точность': 0.3,
+		'Режим': 0.2
 	};
 
 	const sortedTrainers = trainers.items
@@ -40,7 +41,8 @@ export const Rating = () => {
 				obj.charactersPerMinute * weights['Символов в минуту'] +
 				obj.characterCount * weights['Кол-во символов'] +
 				obj.time * weights['Время'] +
-				obj.accuracy * weights['Точность'];
+				obj.accuracy * weights['Точность'] +
+				(obj.strictMode ? weights['Режим'] : 0);
 			return {
 				...obj,
 				score,
@@ -54,12 +56,14 @@ export const Rating = () => {
 
 	return (
 		<div className={`${styles.container} ${styles.themeText}`}>
-			<div className={styles.div}>
+			<div className={`${styles.div}`}>
+				
 				<IoMdStats className={styles.logo} />
 				<h1 className={styles.title}>
-					<TypewriterText text={'Рейтинг'} />
+					<div className={styles.icon}><TypewriterText text={'Рейтинг'} className={styles.icon}/></div>
 				</h1>
-				<BsQuestionCircle className={styles.icon} />
+				<BsQuestionCircle/>
+				
 			</div>
 			<div className={styles.statistics}>
 				<Statistics name='№' shortsStat={true} first={true} />
