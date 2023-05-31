@@ -6,7 +6,7 @@ import { IoCheckmarkSharp, IoCloseSharp } from 'react-icons/io5';
 import { MdSpeed } from 'react-icons/md';
 import { VscSymbolKey } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { BsQuestionCircle } from 'react-icons/bs';
 import { Statistics, TypewriterText } from '../../components';
 import { fetchAllTrainers } from '../../redux/slices/trainers.js';
 import styles from './Rating.module.scss';
@@ -59,6 +59,7 @@ export const Rating = () => {
 				<h1 className={styles.title}>
 					<TypewriterText text={'Рейтинг'} />
 				</h1>
+				<BsQuestionCircle className={styles.icon} />
 			</div>
 			<div className={styles.statistics}>
 				<Statistics name='№' shortsStat={true} first={true} />

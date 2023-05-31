@@ -6,7 +6,7 @@ import {
 	TrainingInProgress,
 	TypewriterText,
 } from '../../components';
-import { useTrainerInput } from '../../hooks/use-trainer-input';
+import { useTrainerInput } from '../../hooks/useTrainerInput';
 import styles from './Trainer.module.scss';
 
 /**

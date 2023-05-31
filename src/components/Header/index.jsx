@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Btn } from '../';
-import { useTheme } from '../../hooks/use-theme';
+import { useTheme } from '../../hooks/useTheme';
 import { isAuthSelect, logout } from '../../redux/slices/auth';
 import styles from './Header.module.scss';
 

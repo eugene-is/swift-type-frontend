@@ -150,7 +150,7 @@ export const Account = () => {
 							{/* Кнопка и поле для обновления имени пользователя */}
 							<Btn
 								className={''}
-								text='Обновить имя'
+								text='Изменить имя'
 								onclick={handleUsernameButtonClick}
 							/>
 							{usernameInputVisible && (
@@ -173,7 +173,7 @@ export const Account = () => {
 						<div className={styles.updadesUser}>
 							{/* Кнопка и поле для обновления почты пользователя */}
 							<Btn
-								text='Обновить почту'
+								text='Изменить почту'
 								onclick={handleEmailButtonClick}
 							/>
 							{emailInputVisible && (
@@ -194,7 +194,7 @@ export const Account = () => {
 						<div className={styles.updadesUser}>
 							{/* Кнопка и поле для обновления пароля пользователя */}
 								<Btn
-										text='Обновить пароль'
+										text='Изменить пароль'
 										onclick={handlePasswordButtonClick}
 									/>
 								{passwordInputVisible && (

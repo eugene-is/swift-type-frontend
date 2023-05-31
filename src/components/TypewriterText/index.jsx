@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useTypewriter } from '../../hooks/use-typewriter';
+import { useTypewriter } from '../../hooks/useTypewriter';
 
 /**
  * Компонент текста, который появляется посимвольно, эмулируя машинопись.

@@ -64,6 +64,7 @@ export const TrainingInProgress = ({
 				<label>
 					<input type='checkbox' onChange={handleToggleFilledKeyboard} />
 					Подстветка клавиатуры
+					<BsQuestionCircle className={styles.icon} />
 				</label>
 				<Btn onclick={toggleLanguage} text='Переключить язык' />
 			</div>

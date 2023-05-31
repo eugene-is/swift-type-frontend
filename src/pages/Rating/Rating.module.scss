@@ -21,3 +21,31 @@
 	display: flex;
 	justify-content: center;
 }
+
+
+.icon {
+	position: relative;
+	cursor: pointer;
+}
+label {
+	input {
+		margin-right: 5px;
+	}
+	svg {
+		margin-left: 5px;
+	}
+}
+.icon:hover::before {
+	content: 'Стандартный режим: В этом режиме Вы можете вводить текст без исправлений сосредотачиваясь на скорости печати. Текст не подсвечивается и не контролируется печать. Строгий режим: В этом режиме Вы должны вводить точное соответствие каждого символа в тексте. Если Вы вводите символ неверно, ввод игнорируется. Текст подсвечивается.';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 250px;
+	padding: 10px;
+	background-color: var(--background-color);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 1.4;
+	z-index: 1;
+}
