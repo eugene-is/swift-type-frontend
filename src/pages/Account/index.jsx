@@ -77,9 +77,17 @@ export const Account = () => {
 			dispatch(fetchUpdate({ id: userData._id, username }));
 		}
 		if (email) {
-			dispatch(fetchUpdate({ id: userData._id, email }));
+			const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+			if (emailRegex.test(email)){
+				dispatch(fetchUpdate({ id: userData._id, email }));
+			} else {
+				return setErrorName('Введите корректную почту');
+			}
 		}
 		if (password) {
+			if (oldPassword !== password) {
+				return setErrorName('Пароли не совпадают');
+			}
 			// Проверка старого пароля перед изменением пароля
 			if (oldPassword === userData.password || userData) {
 				dispatch(fetchUpdate({ id: userData._id, password }));
@@ -110,13 +118,13 @@ export const Account = () => {
 	let count = 1;
 
 	const onClickRemove = (id) => {
-		if (window.confirm('Вы действительно хотите выйти?')) {
+		if (window.confirm('Вы действительно хотите удалить тренировку?')) {
 			dispatch(fetchRemoveTrainer(id));
 		}
 	};
 
 	const onClickAllRemove = (id) => {
-		if (window.confirm('Вы действительно хотите выйти?')) {
+		if (window.confirm('Вы действительно хотите удалить все тренировки?')) {
 			dispatch(fetchRemoveTrainersAll(id));
 		}
 	};
@@ -128,15 +136,11 @@ export const Account = () => {
 				<h1 className={styles.title}>
 					<TypewriterText text={'Личный кабинет'} />
 				</h1>
-				{/* <Btn
-							icon={AiTwotoneDelete}
-							onclick={() => onClickAllRemove()}
-				/> */}
 				<div>
 					<h2 className={styles.text}>Ваше имя: {userData.username}</h2>
 					<h2 className={styles.text}>Ваш email: {userData.email}</h2>
 					<div className={styles.gg}>
-						<div className={styles.updadesUser}>
+						<div className={styles.updatesUser}>
 							{/* Кнопка и поле для обновления имени пользователя */}
 							<Btn
 								className={''}
@@ -144,7 +148,7 @@ export const Account = () => {
 								onclick={handleUsernameButtonClick}
 							/>
 							{usernameInputVisible && (
-								<div className={styles.updadeUser}>
+								<div className={styles.updateUser}>
 									<FormInput
 										textError='Введите имя'
 										error={errorName}
@@ -157,14 +161,15 @@ export const Account = () => {
 								</div>
 							)}
 						</div>
-						<div className={styles.updadesUser}>
+						<div className={styles.updatesUser}>
 							{/* Кнопка и поле для обновления почты пользователя */}
 							<Btn text='Изменить почту' onclick={handleEmailButtonClick} />
 							{emailInputVisible && (
-								<div className={styles.updadeUser}>
+								<div className={styles.updateUser}>
 									<FormInput
 										type='email'
 										value={email}
+										error={errorName}
 										onChange={handleEmailChange}
 										placeholder='Введите email'
 									/>
@@ -172,22 +177,24 @@ export const Account = () => {
 								</div>
 							)}
 						</div>
-						<div className={styles.updadesUser}>
+						<div className={styles.updatesUser}>
 							{/* Кнопка и поле для обновления пароля пользователя */}
 							<Btn text='Изменить пароль' onclick={handlePasswordButtonClick} />
 							{passwordInputVisible && (
-								<div className={styles.updadeUser}>
+								<div className={styles.updateUser}>
 									<FormInput
 										type='password'
 										value={oldPassword}
+										error={errorName}
 										onChange={handleOldPasswordChange}
-										placeholder='Введите старый пароль'
+										placeholder='Введите новый пароль'
 									/>
 									<FormInput
 										type='password'
 										value={password}
+										error={errorName}
 										onChange={handlePasswordChange}
-										placeholder='Введите новый пароль'
+										placeholder='Повторите новый пароль'
 									/>
 									<Btn
 										text='Сохранить'
@@ -218,8 +225,9 @@ export const Account = () => {
 			</div>
 			{Array.isArray(trainers.items) &&
 				trainers.items.map((obj, index) => (
-					<div className={styles.statistics}>
+					<div key={obj._id} className={styles.statistics}>
 						<Btn
+							text=''
 							icon={AiTwotoneDelete}
 							onclick={() => onClickRemove(obj._id)}
 						/>

@@ -62,9 +62,9 @@ export const Login = () => {
 					className={styles.customInput}
 					type='text'
 					name='email'
-					placeholder='Your Email'
-					labelText='Email'
-					textError='Введите email'
+					placeholder='Введите почту'
+					labelText='Электронная почта'
+					textError='Введите почту'
 					error={errors.email?.message || errorMessage}
 					register={register}
 				/>
@@ -73,8 +73,8 @@ export const Login = () => {
 					helperText={errors.password?.message}
 					type='password'
 					name='password'
-					placeholder='Password'
-					labelText='Password'
+					placeholder='Введите пароль'
+					labelText='Пароль'
 					textError='Введите пароль'
 					error={errors.password?.message || errorMessage}
 					register={register}

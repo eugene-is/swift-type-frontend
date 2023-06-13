@@ -37,7 +37,6 @@ export const Rating = () => {
 
 	const sortedTrainers = trainers.items
 		.map((obj) => {
-			console.log(obj.strictMode);
 			const score =
 				obj.charactersPerMinute * weights['Символов в минуту'] +
 				obj.characterCount * weights['Кол-во символов'] +

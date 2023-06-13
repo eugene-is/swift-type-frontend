@@ -99,7 +99,7 @@ export const Registration = () => {
 					helperText={errors.password?.message}
 					type='password'
 					name='password'
-					placeholder='Пароль'
+					placeholder='Введите пароль'
 					labelText='Пароль'
 					textError='Введите пароль'
 					error={
