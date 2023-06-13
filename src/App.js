@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Account, Home, Login, Rating, Registration, Trainer, PrivacyPolicy} from './pages';
+import {
+	Account,
+	Home,
+	Login,
+	PrivacyPolicy,
+	Rating,
+	Registration,
+	Trainer,
+} from './pages';
 import { fetchAuthMe, isAuthSelect } from './redux/slices/auth';
 
 export default function App() {

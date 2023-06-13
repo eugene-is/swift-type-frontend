@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
  * @returns {object} - Возвращает объект с различными функциями и значениями для управления тренировкой.
  */
 
+
 export const useTrainerInput = () => {
 	const [inputText, setInputText] = useState(''); // Текущий введенный текст
 	const [randomText, setRandomText] = useState(''); // Случайно сгенерированный текст
@@ -31,7 +32,9 @@ export const useTrainerInput = () => {
 			document.removeEventListener('keyup', handleKeyUp); // Удаление обработчика отпускания клавиши
 		};
 		// eslint-disable-next-line
-	}, []); // Пустой массив зависимостей означает, что этот эффект должен выполниться только один раз при монтировании компонента
+		// Пустой массив зависимостей означает,
+		// что этот эффект должен выполниться только один раз при монтировании компонента
+	}, []);
 
 	useEffect(() => {
 		if (!endTime) {
@@ -57,15 +60,28 @@ export const useTrainerInput = () => {
 
 	const generateRandomText = () => {
 		const russianTexts = [
-			'Пример случайного текста на русском языке.',
+			'Мы посетили традиционный гавайский луау, на котором была живая музыка, танцы и вкусная еда.',
 			'Еще одно предложение для тренировки печати.',
-			'Третье предложение для проверки навыков.',
+			'Если жить только для себя, своими мелкими заботами о собственном благополучии, то от прожитого не останется и следа.',
+			'Помимо пляжных развлечений, мы также посвятили время исследованию острова.',
+			'Одной из моих любимых частей поездки было знакомство с местной культурой.',
+			'Это очень оживленное место, расположенное в Центральной России.',
+			'Однако, есть и некоторые недостатки.',
+			'Прежде всего, он очень грязный и шумный из-за пробок.',
+			'В третьих, жизнь здесь довольно дорогая, и цены домой и квартир довольно высокие.',
 		];
 
 		const englishTexts = [
-			'Example random text in English.',
-			'Another sentence for typing practice.',
-			'A third sentence to test your skills.',
+			'As there is a student canteen at the university, I often go there for dinner after classes.',
+			'There you may choose between different kinds of soup, meat and fish dishes and desserts.',
+			'I often come home at about seven.',
+			'After supper I do my home work, play computer games and watch TV.',
+			'My mother lays the table.',
+			'It is a family tradition.',
+			'n the morning we gather together in our kitchen at 7 o\'clock and have our breakfast.',
+			'He always listens attentively to his patients and gives them his advice.',
+			'We have many relatives.',
+			'My supper is a full meal.',
 		];
 
 		const texts = language === 'russian' ? englishTexts : russianTexts;
@@ -200,7 +216,6 @@ export const useTrainerInput = () => {
 				errorCount++;
 			}
 		}
-		console.log(`${inputText.length} ---- ${errorCount}`)
 		const accuracy =
 			((inputText.length - Math.floor(errorCount)) /
 				inputText.length) *
@@ -221,14 +236,6 @@ export const useTrainerInput = () => {
 			return Math.floor((charactersTyped / timeInSeconds) * 60);
 		}
 		return 0;
-	};
-
-	/**
-	 * Обработчик нажатия кнопки "Завершить".
-	 */
-
-	const handleFinishClick = () => {
-		finishTraining();
 	};
 
 	/**
@@ -278,7 +285,6 @@ export const useTrainerInput = () => {
 		handleKeyDown,
 		handleKeyUp,
 		handleInputChange,
-		handleFinishClick,
 		handleCheckboxChange,
 		handleHighlightModeChange,
 		handleEnterPress,

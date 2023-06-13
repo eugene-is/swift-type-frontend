@@ -37,6 +37,7 @@ export const Rating = () => {
 
 	const sortedTrainers = trainers.items
 		.map((obj) => {
+			console.log(obj.strictMode);
 			const score =
 				obj.charactersPerMinute * weights['Символов в минуту'] +
 				obj.characterCount * weights['Кол-во символов'] +
@@ -51,8 +52,6 @@ export const Rating = () => {
 		.sort((a, b) => b.score - a.score);
 
 	let count = 1;
-
-	console.log(trainers);
 
 	return (
 		<div className={`${styles.container} ${styles.themeText}`}>
@@ -83,7 +82,7 @@ export const Rating = () => {
 					<Statistics name={`${obj.characterCount} сим.`} />
 					<Statistics name={obj.language} />
 					<Statistics
-						icon={obj.strictMode === 'true' ? IoCheckmarkSharp : IoCloseSharp}
+						icon={obj.strictMode === true ? IoCheckmarkSharp : IoCloseSharp}
 						shortsStat={true}
 					/>
 					<Statistics name={`${obj.time} сек.`} />

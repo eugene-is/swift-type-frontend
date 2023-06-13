@@ -51,7 +51,6 @@ export const Login = () => {
 		return <Navigate to='/' />;
 	}
 
-	console.log('isAuth', isAuth);
 
 	return (
 		<div className={`${styles.form} ${styles.themeContainer}`}>

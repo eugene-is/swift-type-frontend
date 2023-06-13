@@ -16,7 +16,6 @@ import styles from './Registration.module.scss';
 
 export const Registration = () => {
 	const isAuth = useSelector(isAuthSelect);
-	console.log(isAuth);
 
 	const [errorName, setErrorName] = useState('');
 	const [errorPassword, setErrorPassword] = useState('');
@@ -40,22 +39,26 @@ export const Registration = () => {
 	});
 
 	const onSubmit = async (values) => {
-		const data = await dispatch(fetchRegister(values));
-		console.log(values);
-		if (values.password !== values.passwordSecond) {
-			reset();
+		setErrorName('');
+    setErrorPassword('');
+    setErrorPassVerification('');
+    setErrorMassage('');
+		if(values.password !== values.passwordSecond) {
+			reset({ username: values.username, email: values.email });
 			return setErrorPassVerification('Пароли не совпадают');
-		} else if (values.username.length < 2) {
-			reset();
+		}
+		const data = await dispatch(fetchRegister(values));
+	if (values.username.length < 2) {
+			reset({ email: values.email, password: '', passwordSecond: ''});
 			return setErrorName('Укажите корректное имя');
 		} else if (values.password.length < 5) {
-			reset();
+			reset({ username: values.username, email: values.email });
 			return setErrorPassword('Пароль должен состоять минимум из 5 символов');
 		}
 		if (!data.payload) {
+			reset();
 			return setErrorMassage('Имя и почта должны быть уникальными');
 		}
-
 		if ('token' in data.payload) {
 			window.localStorage.setItem('token', data.payload.token);
 		}
@@ -76,7 +79,7 @@ export const Registration = () => {
 					type='text'
 					name='username'
 					placeholder='Ваше имя'
-					labelText='Name'
+					labelText='Имя'
 					textError='Введите имя'
 					error={errors.username?.message || errorName || errorMessage}
 					register={register}
@@ -85,9 +88,9 @@ export const Registration = () => {
 					className={styles.customInput}
 					type='email'
 					name='email'
-					placeholder='Your Email'
-					labelText='Email'
-					textError='Введите email'
+					placeholder='Введите почту'
+					labelText='Электронная почта'
+					textError='Введите почту'
 					error={errors.email?.message || errorMessage}
 					register={register}
 				/>
@@ -96,8 +99,8 @@ export const Registration = () => {
 					helperText={errors.password?.message}
 					type='password'
 					name='password'
-					placeholder='Password'
-					labelText='Password'
+					placeholder='Пароль'
+					labelText='Пароль'
 					textError='Введите пароль'
 					error={
 						errors.password?.message || errorPassword || errorPassVerification

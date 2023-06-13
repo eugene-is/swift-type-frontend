@@ -56,7 +56,6 @@ export const Trainer = () => {
 						toggleLanguage={toggleLanguage}
 						handleInputChange={handleInputChange}
 						handleHighlightModeChange={handleHighlightModeChange}
-						handleFinishClick={handleFinishClick}
 						handleCheckboxChange={handleCheckboxChange}
 						handleEnterPress={handleEnterPress}
 					/>

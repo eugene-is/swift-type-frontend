@@ -18,16 +18,16 @@ instance.interceptors.response.use(
     // Обработка ошибки
     if (error.response) {
       // Ошибка с ответом от сервера
-      console.log('Status:', error.response.status);
-      console.log('Data:', error.response.data);
-			console.log(error.response.data.message);
-      console.log('Headers:', error.response.headers);
+      // console.log('Status:', error.response.status);
+      // console.log('Data:', error.response.data);
+			// console.log(error.response.data.message);
+      // console.log('Headers:', error.response.headers);
     } else if (error.request) {
       // Ошибка без ответа от сервера
-      console.log('Request:', error.request);
+      // console.log('Request:', error.request);
     } else {
       // Другие ошибки
-      console.log('Error:', error.message);
+      // console.log('Error:', error.message);
     }
     return Promise.reject(error);
   }
